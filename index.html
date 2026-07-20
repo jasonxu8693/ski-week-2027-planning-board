@@ -338,6 +338,9 @@
   .package-price small{font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);}
   .package-card p{font-size:10.5px;line-height:1.4;color:var(--muted);margin-top:8px;}
   .package-card ul{margin:9px 0 0;padding-left:16px;font-size:10px;line-height:1.45;color:var(--muted);}
+  .included-list{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+  .included-list b{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.9px;color:var(--pine);margin-bottom:5px;}
+  .included-list ul{margin:0;padding-left:16px;}
   .package-total{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:end;}
   .package-total span{font-size:8px;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);font-weight:700;}
   .package-total b{font-family:'Fraunces',serif;font-size:18px;color:var(--ink);white-space:nowrap;}
@@ -345,11 +348,29 @@
   .truth-card{border-radius:13px;padding:11px 13px;font-size:10.5px;line-height:1.4;}
   .truth-card b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.9px;margin-bottom:3px;}
   .truth-card.room{background:var(--amber-bg);border:1px solid #ead9ae;color:#77510c;}.truth-card.travel{background:var(--glacier-bg);border:1px solid #c4d8f4;color:#285884;}
+  .ucpa-alts{margin-top:12px;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;}
+  .ucpa-alts-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:9px;}
+  .ucpa-alts-head h4{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);}
+  .ucpa-alts-head span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.8px;}
+  .ucpa-alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .ucpa-alt{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fbfaf7;display:grid;grid-template-columns:1fr auto;gap:7px 12px;align-items:start;}
+  .ucpa-alt h5{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);}
+  .ucpa-alt .alt-price{text-align:right;font-family:'Fraunces',serif;font-size:17px;color:var(--pine);white-space:nowrap;}
+  .ucpa-alt .alt-price small{display:block;font-family:'Inter',sans-serif;font-size:7.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);}
+  .ucpa-alt p{grid-column:1/-1;font-size:10.5px;line-height:1.4;color:var(--muted);}
+  .ucpa-alt .alt-meta{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;}
+  .ucpa-alt .alt-meta span{font-size:8.5px;border-radius:999px;padding:4px 7px;background:var(--glacier-bg);color:#285884;border:1px solid #c4d8f4;}
+  .cost-clarity{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px;}
+  .cost-col{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;}
+  .cost-col b{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.9px;margin-bottom:5px;}
+  .cost-col.in b{color:var(--pine)}.cost-col.out b{color:var(--red-d)}
+  .cost-col ul{margin:0;padding-left:15px;font-size:9.5px;line-height:1.45;color:var(--muted);}
   .car-position{text-align:center;color:var(--faint);font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
   @media(prefers-reduced-motion:reduce){.story-main img,.story-side img{animation:none!important}.carousel-track{transition:none}}
   @media(max-width:760px){.option-intro{align-items:stretch;flex-direction:column}.choice-status{min-width:0}.decision-grid{grid-template-columns:1fr}.map-panel,.map-panel iframe{height:215px;min-height:215px}.resort-hero{min-height:205px;padding:21px}.run-mix{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:820px){.rating-grid{grid-template-columns:repeat(2,1fr)}.photo-story{height:250px;grid-template-columns:1.45fr .72fr}.package-grid{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:500px){.resort-body{padding:13px}.resort-hero{padding:18px;min-height:190px}.tradeoff{grid-template-columns:1fr}.carousel-controls{gap:7px}.car-arrow{width:39px;height:39px}.slide-actions .btn{width:100%}.top-resort-tabs{top:57px;margin:-18px -18px 14px;padding:9px 16px 10px}.top-resort-tabs .car-dot{padding:9px 15px;font-size:12px}.photo-story{height:230px;grid-template-columns:1fr}.story-side{display:none}.rating-grid{grid-template-columns:1fr 1fr}.resort-rating{min-height:94px;padding:10px}.resort-rating .r-verdict{font-size:15px}.route-ribbon{font-size:9.5px;left:8px;right:8px}.option-intro h2{font-size:30px}.truth-strip{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.ucpa-alt-grid,.cost-clarity{grid-template-columns:1fr}}
+  @media(max-width:500px){.resort-body{padding:13px}.resort-hero{padding:18px;min-height:190px}.tradeoff{grid-template-columns:1fr}.carousel-controls{gap:7px}.car-arrow{width:39px;height:39px}.slide-actions .btn{width:100%}.top-resort-tabs{top:57px;margin:-18px -18px 14px;padding:9px 16px 10px}.top-resort-tabs .car-dot{padding:9px 15px;font-size:12px}.photo-story{height:230px;grid-template-columns:1fr}.story-side{display:none}.rating-grid{grid-template-columns:1fr 1fr}.resort-rating{min-height:94px;padding:10px}.resort-rating .r-verdict{font-size:15px}.route-ribbon{font-size:9.5px;left:8px;right:8px}.option-intro h2{font-size:30px}.truth-strip{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:1fr 1fr}.ucpa-alts-head{align-items:start;flex-direction:column}}
 
   /* ---------- days ---------- */
   .daypick{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none;}
@@ -574,14 +595,16 @@
                   <div class="p-kicker">Best for true beginners</div><h4>Learn fast · two four-person rooms</h4>
                   <div class="package-price">~£924 <small>UCPA pp</small></div>
                   <p>The full-time beginner course has 9–10 coached sessions. It is the correct route for anyone starting from zero.</p>
-                  <ul><li>Official 10 Jan group-rate reference: €1,062</li><li>Request two paired four-person rooms for all eight</li><li>Shower + sink in each room; paired rooms share toilets</li></ul>
+                  <div class="included-list"><b>£924 includes</b><ul><li>Accommodation + bedding</li><li>Breakfast, lunch or packed lunch, and dinner</li><li>Lift pass + skis/board, boots and poles</li><li>9–10 beginner coaching sessions</li></ul></div>
+                  <ul><li>Official 10 Jan group-rate reference: €1,062</li><li>Two paired four-person rooms; each has a shower + sink and shares toilets with the paired room</li></ul>
                   <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,086 pp</b></div>
                 </div>
                 <div class="package-card">
                   <div class="p-kicker">Best for improvers</div><h4>Half-day coaching · two four-person rooms</h4>
                   <div class="package-price">~£854 <small>UCPA pp</small></div>
                   <p>About 12 hours of coaching Monday–Friday, leaving half the day to practise together. Not suitable for complete beginners.</p>
-                  <ul><li>Official 10 Jan group-rate reference: €981</li><li>Works for people already confident on greens and most blues</li><li>Different ability groups can book the same week</li></ul>
+                  <div class="included-list"><b>£854 includes</b><ul><li>Accommodation + bedding</li><li>Breakfast, lunch or packed lunch, and dinner</li><li>Lift pass + skis/board, boots and poles</li><li>About 12 hours of coaching, Monday–Friday</li></ul></div>
+                  <ul><li>Official 10 Jan group-rate reference: €981</li><li>For people already confident on greens and most blues</li><li>Different ability groups can book the same week</li></ul>
                   <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,016 pp</b></div>
                 </div>
                 <div class="package-card">
@@ -594,10 +617,17 @@
               </div>
               <div class="truth-strip">
                 <div class="truth-card room"><b>Room reality</b>There is no published 8–10-person ensuite dorm at this centre. The closest group setup is two paired four-person rooms; the privacy option is four limited ensuite twins.</div>
-                <div class="truth-card travel"><b>Flight check · 20 Jul 2026</b>London–Geneva is currently from £68 return using Jet2 out and easyJet back on separate tickets, or £77 on Jet2. Geneva–Val Thorens shared transfer is £94 return. Prices shown are for one seat; eight-seat availability still needs checking.</div>
+                <div class="truth-card travel"><b>Outside every UCPA price</b>Flights, airport transfer, travel/ski insurance, towel, helmet unless confirmed, personal ski clothing and bar drinks. London–Geneva is currently from £68 return; the Val Thorens shared transfer is £94 return.</div>
+              </div>
+              <div class="ucpa-alts">
+                <div class="ucpa-alts-head"><h4>The two UCPA backups worth considering</h4><span>Same 10 Jan 2027 rate sheet · package only</span></div>
+                <div class="ucpa-alt-grid">
+                  <div class="ucpa-alt"><h5>La Plagne</h5><div class="alt-price">~£953–1,025<small>half-time · beginner</small></div><p><b>Best comfort and learner backup.</b> Recently renovated, ski-in/ski-out, long forgiving pistes—and every four-person or twin room is ensuite. The trade-off is paying ~£99–101 more than Val Thorens.</p><div class="alt-meta"><span>All rooms ensuite</span><span>Excellent beginners</span><span>3h30 Geneva transfer</span></div></div>
+                  <div class="ucpa-alt"><h5>Tignes</h5><div class="alt-price">~£846–916<small>half-time · beginner</small></div><p><b>Best snow and serious-skiing backup.</b> High Val Claret base, tranquil beginner zones and 300 km shared with Val d’Isère. It is slightly cheaper, but bathrooms are still shared between two rooms.</p><div class="alt-meta"><span>High + snow-sure</span><span>Mixed-ability terrain</span><span>Shared bathrooms</span></div></div>
+                </div>
               </div>
               <div class="resort-take"><div class="take-icon">🎓</div><div><b>The read</b><span>Choose UCPA if the priority is rapid improvement and a sociable all-in lodge week. It recreates the rhythm of chalet life, but it is a large communal sports centre rather than a private catered chalet.</span></div></div>
-              <div class="slide-actions"><div class="sources"><a href="https://www.ucpa.co.uk/resorts-in-france/snow/val-thorens/" target="_blank" rel="noopener">UCPA Val Thorens ↗</a> · <a href="https://www.bensbus.co.uk/ski-transfer/geneva-val-thorens/" target="_blank" rel="noopener">transfer ↗</a> · <a href="https://www.google.com/travel/flights?hl=en&curr=GBP&q=Flights%20from%20London%20to%20Geneva%20on%202027-01-09%20return%202027-01-16" target="_blank" rel="noopener">live flights ↗</a></div><button class="btn pick-resort" data-pick="ucpa">This is my pick</button></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.ucpa.co.uk/resorts-in-france/snow/val-thorens/" target="_blank" rel="noopener">Val Thorens ↗</a> · <a href="https://www.ucpa.co.uk/resorts-in-france/snow/la-plagne/" target="_blank" rel="noopener">La Plagne ↗</a> · <a href="https://www.ucpa.co.uk/resorts-in-france/snow/tignes/" target="_blank" rel="noopener">Tignes ↗</a> · <a href="https://media.ucpa.com/image/upload/v1718182611/PRODUCTION-GRAPHIQUE/WEB/SITE-B2B/UCPA-Groupe-Adulte-Offres-Hiver-.pdf" target="_blank" rel="noopener">2027 rates ↗</a> · <a href="https://www.bensbus.co.uk/ski-transfer/geneva-val-thorens/" target="_blank" rel="noopener">transfer ↗</a></div><button class="btn pick-resort" data-pick="ucpa">This is my pick</button></div>
             </div>
           </article>
 
@@ -620,6 +650,10 @@
                 <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Premium</div><div class="r-proof">~£2,500–2,720 pp full-trip estimate</div></div>
                 <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Nasserein</div><div class="r-proof">Quieter · nursery slopes · own gondola</div></div>
               </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£2,500–2,720 includes · full trip</b><ul><li>Return flight + Zurich–St Anton trains</li><li>Seven-night catered chalet estimate</li><li>Six-day lift pass + ski and boot hire</li><li>Three half-day lessons, lunches, après and £100 buffer</li></ul></div>
+                <div class="cost-col out"><b>Not yet locked</b><ul><li>Live flight fare for eight seats</li><li>Exact whole-chalet quote and catering pattern</li><li>2026/27 lift-pass price + personal insurance</li></ul></div>
+              </div>
               <div class="resort-take"><div class="take-icon">🎿</div><div><b>The read</b><span>Choose St Anton if the group wants the most memorable ski week and accepts a little more planning for the early intermediates.</span></div></div>
               <div class="slide-actions"><div class="sources"><a href="https://www.skiarlberg.at/en/st-anton/winter/ski-region" target="_blank" rel="noopener">Official ski-area facts ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="stanton">This is my pick</button></div>
             </div>
@@ -641,11 +675,15 @@
                 <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Best here</div><div class="r-proof">70% above 2,000 m · top at 3,167 m</div></div>
                 <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Low-key</div><div class="r-proof">Easy drinks; less of an Austrian party scene</div></div>
                 <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Longest</div><div class="r-proof">~2.5–3.5h road transfer after flying</div></div>
-                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Best package</div><div class="r-proof">~£1,150–1,350 pp catered core</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Best package</div><div class="r-proof">~£1,150–1,350 pp travel + catered stay</div></div>
                 <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Plagne 1800</div><div class="r-proof">Chalets · ski-back · easy slope access</div></div>
               </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£1,150–1,350 includes · travel + catered stay</b><ul><li>Return London–Lyon flight + resort transfer</li><li>Seven-night catered chalet</li><li>Breakfast, afternoon tea and six dinners with wine</li></ul></div>
+                <div class="cost-col out"><b>Still add for the full trip</b><ul><li>Lift pass, ski/board hire and lessons</li><li>Mountain lunches, après, insurance and spending</li><li>Exact 16 Jan quote for eight</li></ul></div>
+              </div>
               <div class="resort-take"><div class="take-icon">🏔️</div><div><b>The read</b><span>Choose La Plagne if confidence, snow and value matter more than village charm or a wild après scene.</span></div></div>
-              <div class="slide-actions"><div class="sources"><a href="https://en.la-plagne.com/discover/our-opening-information" target="_blank" rel="noopener">Official ski-area facts ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="laplagne">This is my pick</button></div>
+              <div class="slide-actions"><div class="sources"><a href="https://en.la-plagne.com/discover/our-opening-information" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.skibeat.co.uk/ski/france/la_plagne/plagne_1800/chalet_lupin_plagne1800" target="_blank" rel="noopener">package basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="laplagne">This is my pick</button></div>
             </div>
           </article>
 
@@ -665,11 +703,15 @@
                 <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Very good</div><div class="r-proof">90% snowmaking · top at 2,096 m</div></div>
                 <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Excellent</div><div class="r-proof">Slope-side bars across Saalbach and Hinterglemm</div></div>
                 <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Straightforward</div><div class="r-proof">~1.5h road transfer from Salzburg</div></div>
-                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Strong</div><div class="r-proof">~£1,000–1,200 pp catered core</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Strong</div><div class="r-proof">~£1,000–1,200 pp chalet + flight estimate</div></div>
                 <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Central Saalbach</div><div class="r-proof">Lifts, bars and chalet life on foot</div></div>
               </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£1,000–1,200 includes · estimated core</b><ul><li>Catered chalet room + self-booked London–Salzburg flight allowance</li><li>Breakfast and three-course dinners with drinks</li></ul></div>
+                <div class="cost-col out"><b>Still add or confirm</b><ul><li>Airport transfer—the current range is not a locked door-to-door total</li><li>Lift pass, hire, lessons, lunches, après and insurance</li><li>Dated room quote and eight-seat flight fare</li></ul></div>
+              </div>
               <div class="resort-take"><div class="take-icon">🍻</div><div><b>The read</b><span>Choose Saalbach for the best all-round compromise: friendly skiing, lively evenings and an Austrian village feel.</span></div></div>
-              <div class="slide-actions"><div class="sources"><a href="https://www.saalbach.com/en/winter/ski-resort" target="_blank" rel="noopener">Official ski-area facts ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="saalbach">This is my pick</button></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.saalbach.com/en/winter/ski-resort" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.skiline.co.uk/ski-holidays/austria/saalbach/chalet-alpensport" target="_blank" rel="noopener">chalet basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="saalbach">This is my pick</button></div>
             </div>
           </article>
 
@@ -692,8 +734,12 @@
                 <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Depends how we stay</div><div class="r-proof">£486–677 pp apartment · £1,885 half-board</div></div>
                 <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Central apartment</div><div class="r-proof">Self-catering keeps this option competitive</div></div>
               </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>Two different price bases</b><ul><li><b>£486–677:</b> seven-night apartment only, divided by eight</li><li><b>From £1,885:</b> hotel package with flight, transfer, breakfast and dinner</li></ul></div>
+                <div class="cost-col out"><b>Still add</b><ul><li>Apartment route: flights, transfer, all food and every ski cost</li><li>Hotel route: lift pass, hire, lessons, lunches, après and insurance</li><li>Both need a fresh 16 Jan quote for eight</li></ul></div>
+              </div>
               <div class="resort-take"><div class="take-icon">🏘️</div><div><b>The read</b><span>Choose Mayrhofen if the group values a real town and the clearest split between learners and confident skiers.</span></div></div>
-              <div class="slide-actions"><div class="sources"><a href="https://www.mayrhofen.at/en/stories/skiing-snowboarding" target="_blank" rel="noopener">Official ski-area facts ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="mayrhofen">This is my pick</button></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.mayrhofen.at/en/stories/skiing-snowboarding" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.inghams.co.uk/ski-holidays/ski-resorts/austria/mayrhofen/hotel-berghof" target="_blank" rel="noopener">half-board basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="mayrhofen">This is my pick</button></div>
             </div>
           </article>
 
@@ -704,7 +750,7 @@
         <div class="car-position" id="optionPosition">1 of 5</div>
         <button class="car-arrow" id="optionNext" type="button" aria-label="Next resort">→</button>
       </div>
-      <p class="compare-note">UCPA uses a published January 2027 group-rate reference converted at €1 = £0.8702. All figures remain planning ranges until availability for eight people is confirmed.</p>
+      <p class="compare-note">UCPA uses the published 10 January 2027 group-rate sheet converted at €1 = £0.8702. The 16–23 January figures now state exactly what is included; all remain planning ranges until availability for eight is confirmed.</p>
     </div>
   </section>
 
