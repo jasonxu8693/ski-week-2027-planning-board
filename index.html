@@ -300,7 +300,10 @@
   .top-resort-tabs .car-dots{justify-content:flex-start;gap:10px;overflow-x:auto;flex-wrap:nowrap;padding:2px;scrollbar-width:none;}
   .top-resort-tabs .car-dots::-webkit-scrollbar{display:none;}
   .top-resort-tabs .car-dot{font-size:13px;padding:10px 18px;min-height:44px;flex:none;background:#fff;border:1px solid var(--line2);box-shadow:none;}
+  .top-resort-tabs .car-dot span{display:block;line-height:1.05;}
+  .top-resort-tabs .car-dot small{display:block;margin-top:4px;font-size:8px;line-height:1;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);}
   .top-resort-tabs .car-dot.on{background:var(--navy);border-color:var(--navy);box-shadow:0 8px 18px -12px rgba(13,29,54,.8);}
+  .top-resort-tabs .car-dot.on small{color:#9fb4d4;}
   .photo-story{display:grid;grid-template-columns:1.65fr .72fr;gap:8px;height:285px;margin-bottom:14px;}
   .story-main,.story-side{position:relative;overflow:hidden;border-radius:15px;background:var(--navy);}
   .story-main img,.story-side img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -321,11 +324,32 @@
   .resort-rating.easy{--rating:#2389db}.resort-rating.cruise{--rating:#c8102e}.resort-rating.expert{--rating:#242a35}.resort-rating.snowy{--rating:#65b7d7}.resort-rating.party{--rating:#c97f10}.resort-rating.travel{--rating:#6d5ac7}.resort-rating.value{--rating:#0c7d5c}.resort-rating.stay{--rating:#9a6b3d}
   .resort-take{display:flex;gap:10px;align-items:center;background:var(--navy);color:#fff;border-radius:13px;padding:12px 14px;margin-top:12px;}
   .resort-take .take-icon{font-size:23px}.resort-take b{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#ff9bad;display:block}.resort-take span{font-size:12px;color:#d2deed;}
+  .ucpa-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+  .ucpa-fact{border:1px solid #c9dcef;background:#f4f8fc;border-radius:13px;padding:11px 12px;}
+  .ucpa-fact small{display:block;font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#5e7595;font-weight:750;}
+  .ucpa-fact b{display:block;margin-top:4px;font-family:'Fraunces',serif;font-size:17px;color:var(--ink);line-height:1.1;}
+  .ucpa-fact span{display:block;margin-top:4px;font-size:10px;line-height:1.3;color:var(--muted);}
+  .package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .package-card{border:1px solid var(--line);border-radius:15px;background:#fbfaf7;padding:14px;position:relative;overflow:hidden;}
+  .package-card.recommended{border-color:#76bca5;background:#f1faf6;box-shadow:inset 0 3px 0 var(--pine);}
+  .package-card .p-kicker{font-size:8px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:var(--faint);}
+  .package-card h4{font-family:'Fraunces',serif;font-size:19px;line-height:1.08;margin:5px 0 8px;color:var(--ink);}
+  .package-price{font-family:'Fraunces',serif;font-size:25px;font-weight:650;color:var(--pine);line-height:1;}
+  .package-price small{font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);}
+  .package-card p{font-size:10.5px;line-height:1.4;color:var(--muted);margin-top:8px;}
+  .package-card ul{margin:9px 0 0;padding-left:16px;font-size:10px;line-height:1.45;color:var(--muted);}
+  .package-total{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:end;}
+  .package-total span{font-size:8px;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);font-weight:700;}
+  .package-total b{font-family:'Fraunces',serif;font-size:18px;color:var(--ink);white-space:nowrap;}
+  .truth-strip{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px;}
+  .truth-card{border-radius:13px;padding:11px 13px;font-size:10.5px;line-height:1.4;}
+  .truth-card b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.9px;margin-bottom:3px;}
+  .truth-card.room{background:var(--amber-bg);border:1px solid #ead9ae;color:#77510c;}.truth-card.travel{background:var(--glacier-bg);border:1px solid #c4d8f4;color:#285884;}
   .car-position{text-align:center;color:var(--faint);font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
   @media(prefers-reduced-motion:reduce){.story-main img,.story-side img{animation:none!important}.carousel-track{transition:none}}
   @media(max-width:760px){.option-intro{align-items:stretch;flex-direction:column}.choice-status{min-width:0}.decision-grid{grid-template-columns:1fr}.map-panel,.map-panel iframe{height:215px;min-height:215px}.resort-hero{min-height:205px;padding:21px}.run-mix{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:820px){.rating-grid{grid-template-columns:repeat(2,1fr)}.photo-story{height:250px;grid-template-columns:1.45fr .72fr}}
-  @media(max-width:500px){.resort-body{padding:13px}.resort-hero{padding:18px;min-height:190px}.tradeoff{grid-template-columns:1fr}.carousel-controls{gap:7px}.car-arrow{width:39px;height:39px}.slide-actions .btn{width:100%}.top-resort-tabs{top:57px;margin:-18px -18px 14px;padding:9px 16px 10px}.top-resort-tabs .car-dot{padding:9px 15px;font-size:12px}.photo-story{height:230px;grid-template-columns:1fr}.story-side{display:none}.rating-grid{grid-template-columns:1fr 1fr}.resort-rating{min-height:94px;padding:10px}.resort-rating .r-verdict{font-size:15px}.route-ribbon{font-size:9.5px;left:8px;right:8px}.option-intro h2{font-size:30px}}
+  @media(max-width:820px){.rating-grid{grid-template-columns:repeat(2,1fr)}.photo-story{height:250px;grid-template-columns:1.45fr .72fr}.package-grid{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:500px){.resort-body{padding:13px}.resort-hero{padding:18px;min-height:190px}.tradeoff{grid-template-columns:1fr}.carousel-controls{gap:7px}.car-arrow{width:39px;height:39px}.slide-actions .btn{width:100%}.top-resort-tabs{top:57px;margin:-18px -18px 14px;padding:9px 16px 10px}.top-resort-tabs .car-dot{padding:9px 15px;font-size:12px}.photo-story{height:230px;grid-template-columns:1fr}.story-side{display:none}.rating-grid{grid-template-columns:1fr 1fr}.resort-rating{min-height:94px;padding:10px}.resort-rating .r-verdict{font-size:15px}.route-ribbon{font-size:9.5px;left:8px;right:8px}.option-intro h2{font-size:30px}.truth-strip{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:1fr 1fr}}
 
   /* ---------- days ---------- */
   .daypick{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none;}
@@ -465,7 +489,7 @@
 
 <!-- ================= HERO ================= -->
 <div class="hero">
-  <div class="photo" id="heroPhoto" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/St_Anton_From_Above_%28152128913%29.jpeg/1920px-St_Anton_From_Above_%28152128913%29.jpeg');"></div>
+  <div class="photo" id="heroPhoto" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg');"></div>
   <div class="scrim"></div>
   <div class="snow" aria-hidden="true">
     <span style="left:6%;animation-duration:7s;">❄</span>
@@ -478,12 +502,13 @@
     <span style="left:92%;animation-duration:8.5s;animation-delay:4s;">❆</span>
   </div>
   <div class="wrap">
-    <div class="kicker">January 2027 · resort options · group of 8</div>
+    <div class="kicker">January 2027 · two possible weeks · group of 8</div>
     <h1>Ski Week <em>’27</em></h1>
-    <p class="concept">Four resorts. One very good week.</p>
+    <p class="concept">Two weeks. Five ways to do it.</p>
     <div class="heromTA">
-      <span class="hchip"><b>Sat 16 – Sat 23 Jan 2027</b> · target week</span>
-      <span class="hchip"><b>4</b> shortlisted resorts</span>
+      <span class="hchip"><b>9–16 Jan</b> · UCPA week</span>
+      <span class="hchip"><b>16–23 Jan</b> · resort week</span>
+      <span class="hchip"><b>5</b> choices</span>
       <span class="hchip"><b>8</b> travellers</span>
       <span class="hchip" id="countChip"><b>—</b></span>
     </div>
@@ -518,9 +543,9 @@
     <div class="top-resort-tabs"><div class="car-dots" id="optionDots" aria-label="Choose a resort"></div></div>
     <div class="option-intro">
       <div>
-        <div class="mini" style="color:var(--red);">The shortlist · January 2027</div>
-        <h2 id="optionsTitle">Choose the ski week that fits us</h2>
-        <p class="sub">Every option can work. The difference is how easy it feels to ski, how much effort it takes to get there and what the week costs.</p>
+        <div class="mini" style="color:var(--red);">The shortlist · two January weeks</div>
+        <h2 id="optionsTitle">Choose the kind of ski week we want</h2>
+        <p class="sub">UCPA is the coached, all-in week on 9–16 January. The resort-and-chalet choices sit in the following week, 16–23 January.</p>
       </div>
       <div class="choice-status"><small>Your saved preference</small><b id="resortChoiceLabel">No pick yet</b></div>
     </div>
@@ -529,9 +554,56 @@
       <div class="carousel-viewport">
         <div class="carousel-track" id="optionTrack">
 
+          <article class="resort-slide" data-resort="ucpa" aria-label="UCPA Val Thorens option">
+            <div class="resort-hero" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg')">
+              <div><span class="resort-rank">🇫🇷 9–16 Jan · coached all-in week</span><h3>UCPA · Val Thorens</h3><p>The quickest route to better skiing: live on the piste, eat together and put the newer skiers and snowboarders into the right coaching groups every day.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg" alt="Val Thorens winter panorama"><div class="route-ribbon"><span>London</span><i>✈</i><span>Geneva</span><i>🚌</i><b>Val Thorens</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_%28hiver_2019%29.JPG/1920px-Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_%28hiver_2019%29.JPG" alt="Piste junction at Val Thorens"></div><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ski_%C3%A0_Val_Thorens_%282016%29.JPG/1920px-Ski_%C3%A0_Val_Thorens_%282016%29.JPG" alt="Skiing at Val Thorens"></div></div>
+              </div>
+              <div class="ucpa-summary">
+                <div class="ucpa-fact"><small>What is included</small><b>Almost everything</b><span>Bed · all meals · lift pass · equipment · coaching · bedding</span></div>
+                <div class="ucpa-fact"><small>Beginner fit</small><b>Excellent</b><span>Dedicated beginner programme and high, snow-sure learning terrain</span></div>
+                <div class="ucpa-fact"><small>The experience</small><b>Communal ski lodge</b><span>Buffet meals, shared rooms, bar and ski-in/ski-out access</span></div>
+                <div class="ucpa-fact"><small>Still to add</small><b>Flight + transfer</b><span>Insurance and personal ski clothing also sit outside the package</span></div>
+              </div>
+              <div class="package-grid">
+                <div class="package-card recommended">
+                  <div class="p-kicker">Best for true beginners</div><h4>Learn fast · two four-person rooms</h4>
+                  <div class="package-price">~£924 <small>UCPA pp</small></div>
+                  <p>The full-time beginner course has 9–10 coached sessions. It is the correct route for anyone starting from zero.</p>
+                  <ul><li>Official 10 Jan group-rate reference: €1,062</li><li>Request two paired four-person rooms for all eight</li><li>Shower + sink in each room; paired rooms share toilets</li></ul>
+                  <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,086 pp</b></div>
+                </div>
+                <div class="package-card">
+                  <div class="p-kicker">Best for improvers</div><h4>Half-day coaching · two four-person rooms</h4>
+                  <div class="package-price">~£854 <small>UCPA pp</small></div>
+                  <p>About 12 hours of coaching Monday–Friday, leaving half the day to practise together. Not suitable for complete beginners.</p>
+                  <ul><li>Official 10 Jan group-rate reference: €981</li><li>Works for people already confident on greens and most blues</li><li>Different ability groups can book the same week</li></ul>
+                  <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,016 pp</b></div>
+                </div>
+                <div class="package-card">
+                  <div class="p-kicker">Comfort-first fallback</div><h4>Four ensuite twin rooms</h4>
+                  <div class="package-price">TBC <small>room supplement</small></div>
+                  <p>Limited ensuite twins replace the shared-room setup. This gives the group privacy, but availability and the supplement need a direct UCPA quote.</p>
+                  <ul><li>Choose beginner or half-time coaching by actual ability</li><li>Scarcer than standard rooms; ask UCPA before committing flights</li><li>Four rooms required for eight travellers</li></ul>
+                  <div class="package-total"><span>Base trip before supplement</span><b>£1,016–1,086 pp</b></div>
+                </div>
+              </div>
+              <div class="truth-strip">
+                <div class="truth-card room"><b>Room reality</b>There is no published 8–10-person ensuite dorm at this centre. The closest group setup is two paired four-person rooms; the privacy option is four limited ensuite twins.</div>
+                <div class="truth-card travel"><b>Flight check · 20 Jul 2026</b>London–Geneva is currently from £68 return using Jet2 out and easyJet back on separate tickets, or £77 on Jet2. Geneva–Val Thorens shared transfer is £94 return. Prices shown are for one seat; eight-seat availability still needs checking.</div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🎓</div><div><b>The read</b><span>Choose UCPA if the priority is rapid improvement and a sociable all-in lodge week. It recreates the rhythm of chalet life, but it is a large communal sports centre rather than a private catered chalet.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.ucpa.co.uk/resorts-in-france/snow/val-thorens/" target="_blank" rel="noopener">UCPA Val Thorens ↗</a> · <a href="https://www.bensbus.co.uk/ski-transfer/geneva-val-thorens/" target="_blank" rel="noopener">transfer ↗</a> · <a href="https://www.google.com/travel/flights?hl=en&curr=GBP&q=Flights%20from%20London%20to%20Geneva%20on%202027-01-09%20return%202027-01-16" target="_blank" rel="noopener">live flights ↗</a></div><button class="btn pick-resort" data-pick="ucpa">This is my pick</button></div>
+            </div>
+          </article>
+
           <article class="resort-slide" data-resort="stanton" aria-label="St Anton option">
             <div class="resort-hero" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/St_Anton_From_Above_%28152128913%29.jpeg/1920px-St_Anton_From_Above_%28152128913%29.jpeg')">
-              <div><span class="resort-rank">🇦🇹 Big skiing · bigger après</span><h3>St Anton am Arlberg</h3><p>The most exciting option. Brilliant for confident skiers; workable for the rest of us with the right base and routes.</p></div>
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · big skiing · bigger après</span><h3>St Anton am Arlberg</h3><p>The most exciting option. Brilliant for confident skiers; workable for the rest of us with the right base and routes.</p></div>
             </div>
             <div class="resort-body">
               <div class="photo-story">
@@ -555,7 +627,7 @@
 
           <article class="resort-slide" data-resort="laplagne" aria-label="La Plagne option">
             <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/La%20Plagne%20Winter%20Panorama.jpg?width=1800')">
-              <div><span class="resort-rank">🇫🇷 Easiest skiing · strongest value</span><h3>La Plagne · Paradiski</h3><p>The safest group choice: forgiving pistes, reliable snow and a catered package that keeps the price under control.</p></div>
+              <div><span class="resort-rank">🇫🇷 16–23 Jan · easiest skiing · strongest value</span><h3>La Plagne · Paradiski</h3><p>The safest group choice: forgiving pistes, reliable snow and a catered package that keeps the price under control.</p></div>
             </div>
             <div class="resort-body">
               <div class="photo-story">
@@ -579,7 +651,7 @@
 
           <article class="resort-slide" data-resort="saalbach" aria-label="Saalbach option">
             <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Saalbach%20hinterglemm.jpg?width=1800')">
-              <div><span class="resort-rank">🇦🇹 The balanced Austrian option</span><h3>Saalbach-Hinterglemm</h3><p>Lots of approachable skiing, brilliant huts and enough après to feel properly Austrian without St Anton's sharper edges.</p></div>
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · the balanced Austrian option</span><h3>Saalbach-Hinterglemm</h3><p>Lots of approachable skiing, brilliant huts and enough après to feel properly Austrian without St Anton's sharper edges.</p></div>
             </div>
             <div class="resort-body">
               <div class="photo-story">
@@ -603,7 +675,7 @@
 
           <article class="resort-slide" data-resort="mayrhofen" aria-label="Mayrhofen option">
             <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Zillertal%2C%20Ski%20Resort%20Mayrhofen-Hippach%20%2813384906064%29.jpg?width=1800')">
-              <div><span class="resort-rank">🇦🇹 Two mountains · one lively town</span><h3>Mayrhofen</h3><p>The neatest ability split: learn and cruise on Ahorn, then head to Penken when you want steeper, faster days.</p></div>
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · two mountains · one lively town</span><h3>Mayrhofen</h3><p>The neatest ability split: learn and cruise on Ahorn, then head to Penken when you want steeper, faster days.</p></div>
             </div>
             <div class="resort-body">
               <div class="photo-story">
@@ -629,10 +701,10 @@
       </div>
       <div class="carousel-controls">
         <button class="car-arrow" id="optionPrev" type="button" aria-label="Previous resort">←</button>
-        <div class="car-position" id="optionPosition">1 of 4</div>
+        <div class="car-position" id="optionPosition">1 of 5</div>
         <button class="car-arrow" id="optionNext" type="button" aria-label="Next resort">→</button>
       </div>
-      <p class="compare-note">Budget figures are planning ranges. We’ll price flights, transfers and stays properly once the group chooses a resort.</p>
+      <p class="compare-note">UCPA uses a published January 2027 group-rate reference converted at €1 = £0.8702. All figures remain planning ranges until availability for eight people is confirmed.</p>
     </div>
   </section>
 
@@ -1182,6 +1254,9 @@
 <footer><div class="wrap">
   Ski Week ’27 options · resort facts linked to official ski-area sources · budget figures are planning estimates · preferences save to this browser only.
   <details style="margin-top:6px;"><summary style="cursor:pointer;">Photo credits — Wikimedia Commons</summary>
+  <a href="https://commons.wikimedia.org/wiki/File:Val-thorens-panorama.jpg" target="_blank" rel="noopener">Val Thorens panorama</a> © Henrik, CC BY-SA 3.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_(hiver_2019).JPG" target="_blank" rel="noopener">Val Thorens pistes</a> © Florian Pépellin, CC BY-SA 4.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Ski_%C3%A0_Val_Thorens_(2016).JPG" target="_blank" rel="noopener">Skiing at Val Thorens</a> © Florian Pépellin, CC BY-SA 3.0 ·
   <a href="https://commons.wikimedia.org/w/index.php?curid=73722795" target="_blank" rel="noopener">St Anton from above</a> © Thomas K, CC BY 3.0 ·
   <a href="https://commons.wikimedia.org/w/index.php?curid=71467202" target="_blank" rel="noopener">Arlberg pistes</a> © Erich Fend, CC0 ·
   <a href="https://commons.wikimedia.org/w/index.php?curid=5667767" target="_blank" rel="noopener">Galzig</a> © Giggy, CC BY-SA 3.0 ·
@@ -1201,7 +1276,8 @@
   function set(k,v){try{if(LS)LS.setItem('stanton27-'+k,v);}catch(e){}}
 
   /* ---------- resort options carousel ---------- */
-  var resortNames={stanton:'St Anton',laplagne:'La Plagne',saalbach:'Saalbach',mayrhofen:'Mayrhofen'};
+  var resortNames={ucpa:'UCPA · Val Thorens',stanton:'St Anton',laplagne:'La Plagne',saalbach:'Saalbach',mayrhofen:'Mayrhofen'};
+  var resortDates={ucpa:'9–16 Jan',stanton:'16–23 Jan',laplagne:'16–23 Jan',saalbach:'16–23 Jan',mayrhofen:'16–23 Jan'};
   var optionTrack=document.getElementById('optionTrack');
   var optionSlides=optionTrack?Array.prototype.slice.call(optionTrack.querySelectorAll('.resort-slide')):[];
   var optionIndex=0,optionTouchX=null;
@@ -1210,7 +1286,7 @@
   var optionPrev=document.getElementById('optionPrev'),optionNext=document.getElementById('optionNext');
   var resortChoiceLabel=document.getElementById('resortChoiceLabel');
   if(optionDots)optionSlides.forEach(function(slide,i){
-    var b=document.createElement('button');b.type='button';b.className='car-dot';b.textContent=resortNames[slide.dataset.resort];b.setAttribute('aria-label','Show '+resortNames[slide.dataset.resort]);
+    var b=document.createElement('button');b.type='button';b.className='car-dot';b.innerHTML='<span>'+resortNames[slide.dataset.resort]+'</span><small>'+resortDates[slide.dataset.resort]+'</small>';b.setAttribute('aria-label','Show '+resortNames[slide.dataset.resort]+', '+resortDates[slide.dataset.resort]);
     b.addEventListener('click',function(){optionIndex=i;renderOptionCarousel();});optionDots.appendChild(b);
   });
   function renderOptionCarousel(){
@@ -1339,9 +1415,12 @@
   var now=new Date(); now.setHours(0,0,0,0);
   var msday=86400000;
   var daysTo=Math.ceil((TRIP.start-now)/msday);
+  var firstWeek=new Date(2027,0,9);
+  var daysToFirst=Math.ceil((firstWeek-now)/msday);
   var phase = now<TRIP.start ? (daysTo===0?'outbound':'pre') : (now>TRIP.end ? 'post' : (now.getTime()===TRIP.end.getTime() ? 'depart' : (now.getTime()===TRIP.start.getTime()?'outbound':'resort')));
   var cc=document.getElementById('countChip');
-  if(phase==='pre')cc.innerHTML='<b>'+daysTo+'</b> days to go';
+  if(now<firstWeek)cc.innerHTML='<b>'+daysToFirst+'</b> days to first option';
+  else if(now<TRIP.start)cc.innerHTML='<b>UCPA week</b> · Val Thorens';
   else if(phase==='outbound')cc.innerHTML='<b>Travel day</b> — wheels up';
   else if(phase==='resort'){var dnum=Math.floor((now-TRIP.start)/msday)+1;cc.innerHTML='<b>Ski day '+dnum+'</b> of 7';}
   else if(phase==='depart')cc.innerHTML='<b>Departure day</b>';
