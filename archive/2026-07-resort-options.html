@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ski Week '27 — resort options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101c30; --muted:#566578; --faint:#90a0b3;
+    --bg:#f5f4f0; --card:#ffffff; --line:#e3e1da; --line2:#cfccc2;
+    --navy:#0d1d36; --navy2:#13294e;
+    --red:#c8102e; --red-d:#9e0c24;
+    --glacier:#1e62c9; --glacier-bg:#e9f0fb;
+    --amber:#c97f10; --amber-bg:#faf1de;
+    --pine:#0c7d5c; --pine-bg:#e4f3ec;
+    --caution-bg:#fbeae9;
+    --shadow:0 1px 2px rgba(16,28,48,.05),0 8px 24px -12px rgba(16,28,48,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:14.5px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cg fill='none' stroke='%23101c30' stroke-opacity='.025' stroke-width='1.4'%3E%3Cpath d='M-20 330 Q 90 250 210 300 T 460 280'/%3E%3Cpath d='M-20 370 Q 110 290 230 340 T 460 320'/%3E%3Cpath d='M-20 290 Q 70 220 190 260 T 460 240'/%3E%3C/g%3E%3C/svg%3E");}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 18px;}
+  .flagband{height:7px;background:linear-gradient(180deg,var(--red) 0 33%,#fff 33% 66%,var(--red) 66% 100%);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;color:#fff;overflow:hidden;background:linear-gradient(180deg,#091529,#13294e);}
+  .hero .photo{position:absolute;inset:0;background-size:cover;background-position:center 35%;}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,21,41,.46) 0%,rgba(9,21,41,.18) 42%,rgba(9,21,41,.78) 100%);}
+  .hero .wrap{position:relative;z-index:2;padding-top:84px;padding-bottom:10px;}
+  .hero .pano{display:block;width:100%;margin-top:-6px;position:relative;z-index:2;}
+  .snow{position:absolute;inset:0;z-index:3;pointer-events:none;}
+  .snow span{position:absolute;top:-14px;color:#fff;opacity:.55;font-size:11px;animation:snowfall linear infinite;text-shadow:0 1px 6px rgba(9,21,41,.5);}
+  @keyframes snowfall{to{transform:translateY(300px);opacity:0;}}
+  @media(prefers-reduced-motion:reduce){.snow span{animation:none;display:none;}}
+  .hero .kicker{font-size:10.5px;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:#ffd9df;text-shadow:0 1px 8px rgba(9,21,41,.7);}
+  .hero h1{font-family:'Fraunces',serif;font-size:clamp(34px,6vw,54px);font-weight:600;line-height:1.05;letter-spacing:-.5px;margin:8px 0 6px;text-shadow:0 2px 18px rgba(9,21,41,.65);}
+  .hero h1 em{font-style:italic;color:#ff8da0;}
+  .hero .concept{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:#e8eef8;text-shadow:0 1px 10px rgba(9,21,41,.8);margin-bottom:16px;}
+  .heromTA{display:flex;gap:8px;flex-wrap:wrap;}
+  .hchip{background:rgba(13,29,54,.55);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);border-radius:999px;padding:6px 14px;font-size:12px;color:#dde6f2;font-weight:500;}
+  .hchip b{color:#fff;font-weight:650;}
+  .hchip.go{border-color:rgba(120,220,180,.5);} .hchip.go b{color:#8ef0c6;}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;background:rgba(245,244,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:60;}
+  .nav .wrap{display:flex;gap:4px;align-items:center;padding:8px 18px;overflow-x:auto;scrollbar-width:none;}
+  .nav .wrap::-webkit-scrollbar{display:none;}
+  .tab{border:1px solid transparent;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:all .15s;min-height:40px;}
+  .tab:hover{color:var(--ink);background:#fff;box-shadow:var(--shadow);}
+  .tab.on{background:var(--red);color:#fff;}
+  .tab:focus-visible{outline:2px solid var(--glacier);outline-offset:2px;}
+  .helpbtn{margin-left:auto;flex:none;border:1px solid #eebbb7;background:var(--caution-bg);color:var(--red-d);font-family:inherit;font-weight:700;font-size:12px;padding:9px 14px;border-radius:999px;cursor:pointer;min-height:40px;}
+  .helpbtn:hover{background:#f6d7d4;}
+
+  /* mobile dock */
+  .dock{display:none;}
+  @media(max-width:620px){
+    .dock{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;z-index:70;background:rgba(13,29,54,.94);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.12);padding:6px 4px calc(8px + env(safe-area-inset-bottom));}
+    .dock button{background:none;border:none;color:#8fa9d4;font-family:inherit;font-size:10px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:10px;min-height:48px;}
+    .dock button .di{font-size:19px;line-height:1;}
+    .dock button.on{color:#fff;background:rgba(200,16,46,.45);}
+    body{padding-bottom:74px;}
+    .hero .wrap{padding-top:56px;}
+  }
+
+  /* ---------- views ---------- */
+  .view{display:none;padding:30px 0 60px;}
+  .view.on{display:block;animation:fadein .25s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  h2{font-family:'Fraunces',Georgia,serif;font-size:25px;font-weight:600;letter-spacing:-.3px;margin-bottom:5px;}
+  .sub{color:var(--muted);font-size:13.5px;max-width:700px;margin-bottom:18px;}
+  .sub b{color:var(--ink);}
+  .mini{font-size:10.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .sect{margin-top:40px;}
+
+  .grid{display:grid;gap:12px;}
+  .g3{grid-template-columns:repeat(3,1fr);} .g2{grid-template-columns:repeat(2,1fr);} .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:860px){.g3,.g4{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.g3,.g2,.g4{grid-template-columns:1fr;}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);}
+  .card h3{font-size:14.5px;font-weight:650;margin-bottom:5px;}
+  .card p{font-size:12.8px;color:var(--muted);}
+
+  .chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:550;color:var(--muted);}
+  .chip b{color:var(--ink);font-weight:650;}
+  .chip.blue{background:var(--glacier-bg);border-color:#c4d8f4;color:#174a96;}
+  .chip.green{background:var(--pine-bg);border-color:#9ed3bf;color:var(--pine);}
+  .chip.amber{background:var(--amber-bg);border-color:#ead9ae;color:#9a6008;}
+  .chip.red{background:var(--caution-bg);border-color:#eebbb7;color:var(--red-d);}
+  .chip.dark{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+  .kv:last-child{border-bottom:none;}
+  .kv span:first-child{color:var(--faint);flex:none;}
+  .kv span:last-child{color:var(--ink);font-weight:550;text-align:right;}
+
+  details.why{margin-top:8px;font-size:12.5px;}
+  details.why summary{cursor:pointer;color:var(--glacier);font-weight:600;font-size:12px;list-style:none;}
+  details.why summary::before{content:"ⓘ ";}
+  details.why[open] summary{margin-bottom:4px;}
+  details.why p{color:var(--muted);}
+
+  .progress{height:7px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:8px;}
+  .progress div{height:100%;background:var(--pine);border-radius:4px;width:0%;transition:width .3s;}
+
+  .btn{display:inline-block;background:var(--glacier);color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:11px 18px;border-radius:11px;border:none;cursor:pointer;font-family:inherit;min-height:42px;}
+  .btn:hover{background:#174a96;}
+  .btn:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line2);}
+  .btn.ghost:hover{border-color:var(--glacier);color:var(--glacier);}
+  .btn.navy{background:var(--navy);} .btn.navy:hover{background:#1b3560;}
+
+  /* ---------- premium ski system ---------- */
+  .svgi{width:19px;height:19px;display:block;margin:0 auto 3px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .pd{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;}
+  .pd::before{content:"";width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .pd.pblue{color:#174a96;} .pd.pblue::before{background:var(--glacier);}
+  .pd.pred{color:var(--red-d);} .pd.pred::before{background:var(--red);}
+  .pd.pblack{color:var(--ink);} .pd.pblack::before{background:#14181f;transform:rotate(45deg);border-radius:2px;}
+  .patrol{position:relative;border-left:6px solid var(--red);}
+  .patrol .ptag{position:absolute;top:-9px;left:14px;background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;padding:2px 9px;border-radius:4px;}
+  .dash{background:linear-gradient(160deg,var(--navy),#13294e);border-radius:16px;padding:16px;}
+  .dash .mini{color:#8fa9d4;}
+  .dash .live a{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);color:#fff;}
+  .dash .live a:hover{border-color:var(--glacier);background:rgba(30,98,201,.25);}
+  .dash .live .lt{color:#fff;} .dash .live .ls{color:#9cc4f4;}
+  .dash .upd{font-size:10.5px;color:#8fa9d4;margin-top:9px;}
+  .dayban{position:relative;height:128px;border-radius:11px;overflow:hidden;margin-bottom:12px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Cpath d='M0 240 L0 150 L70 90 L130 150 L190 70 L250 140 L310 95 L400 160 L400 240 Z' fill='%231b3560'/%3E%3Cpath d='M190 70 L205 90 L175 90 Z' fill='%23e9eef7'/%3E%3Cpath d='M0 240 L0 190 L90 155 L180 195 L270 150 L360 190 L400 175 L400 240 Z' fill='%23223c66'/%3E%3C/svg%3E") center/cover, linear-gradient(160deg,#0d1d36,#1b3560);}
+  .dayban img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .dayban .mood{position:absolute;left:10px;bottom:10px;z-index:2;background:rgba(9,21,41,.62);backdrop-filter:blur(6px);color:#fff;font-size:11px;font-weight:650;padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.22);}
+  .dayban .wx2{position:absolute;right:10px;bottom:10px;z-index:2;background:rgba(9,21,41,.62);backdrop-filter:blur(6px);color:#cfe0f5;font-size:10.5px;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);}
+  .dayban::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(9,21,41,.55));}
+  .dayban .mood,.dayban .wx2{z-index:3;}
+  .pcard .thumb{height:104px;border-radius:10px;overflow:hidden;position:relative;margin-bottom:2px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Cpath d='M0 240 L0 150 L70 90 L130 150 L190 70 L250 140 L310 95 L400 160 L400 240 Z' fill='%231b3560'/%3E%3Cpath d='M0 240 L0 190 L90 155 L180 195 L270 150 L360 190 L400 175 L400 240 Z' fill='%23223c66'/%3E%3C/svg%3E") center/cover, linear-gradient(160deg,#0d1d36,#1b3560);}
+  .pcard .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .modetog{display:flex;justify-content:flex-end;margin:14px 0 0;}
+  body.tripmode .hm-board,body.tripmode .hm-dream,body.tripmode .hm-cost,body.tripmode .hm-week{display:none;}
+  #v-home>.wrap{display:flex;flex-direction:column;}
+  #v-home .hm-mode,#v-home .hm-next,#v-home .hm-board,#v-home .hm-quick,#v-home .hm-dream,#v-home .hm-week,#v-home .hm-live,#v-home .hm-ready,#v-home .hm-dec,#v-home .hm-tonight,#v-home .hm-cost{display:none!important;}
+  .hm-options{order:1;}
+  .hm-next{order:1;} .hm-mode{order:2;} .hm-quick{order:3;} .hm-board{order:4;} .hm-dream{order:5;} .hm-week{order:6;} .hm-live{order:7;} .hm-ready{order:8;} .hm-dec{order:9;} .hm-tonight{order:10;} .hm-cost{order:11;}
+  body.tripmode .hm-live{order:4;} body.tripmode .hm-tonight{order:5;} body.tripmode .hm-dec{order:6;} body.tripmode .hm-ready{order:7;}
+  .tonight{position:relative;overflow:hidden;}
+  .tonight .tbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34;}
+  .tonight>div{position:relative;z-index:2;}
+
+  /* ---------- home ---------- */
+  .nextup{background:linear-gradient(135deg,var(--navy),#1b3560);color:#fff;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:-34px;position:relative;z-index:5;box-shadow:0 14px 34px -14px rgba(9,21,41,.55);}
+  .nextup .nu-l{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8fa9d4;margin-bottom:3px;}
+  .nextup .nu-t{font-family:'Fraunces',serif;font-size:19px;font-weight:600;}
+  .nextup .nu-s{font-size:12.5px;color:#aebdd4;margin-top:2px;}
+  .quick{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0 0;}
+  @media(max-width:600px){.quick{grid-template-columns:repeat(5,1fr);gap:5px;}}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 4px;font-family:inherit;font-size:11px;font-weight:600;color:var(--ink);cursor:pointer;text-align:center;box-shadow:var(--shadow);min-height:58px;}
+  .qa .qi{display:block;font-size:18px;margin-bottom:3px;}
+  .qa:hover{border-color:var(--glacier);}
+
+  .photogrid{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;margin-top:4px;}
+  @media(max-width:700px){.photogrid{grid-template-columns:1fr;}}
+  .ph{position:relative;border-radius:16px;overflow:hidden;min-height:210px;box-shadow:var(--shadow);
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Cpath d='M0 240 L0 150 L70 90 L130 150 L190 70 L250 140 L310 95 L400 160 L400 240 Z' fill='%231b3560'/%3E%3Cpath d='M190 70 L205 90 L175 90 Z M310 95 L324 112 L296 112 Z' fill='%23e9eef7'/%3E%3Cpath d='M20 120 C120 70 280 70 380 110' fill='none' stroke='%238fa9d4' stroke-width='1.5'/%3E%3Cline x1='157' y1='84' x2='157' y2='95' stroke='%238fa9d4' stroke-width='1.5'/%3E%3Crect x='150' y='95' width='14' height='10' rx='2' fill='%23c8102e'/%3E%3Crect x='153' y='97' width='8' height='4' rx='1' fill='%23fff' opacity='.85'/%3E%3Cpath d='M0 240 L0 190 L90 155 L180 195 L270 150 L360 190 L400 175 L400 240 Z' fill='%23223c66'/%3E%3C/svg%3E") center bottom/cover no-repeat, linear-gradient(160deg,#0d1d36,#1b3560);}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;background:linear-gradient(180deg,transparent,rgba(9,21,41,.82));color:#fff;font-size:12.5px;font-weight:600;z-index:2;}
+  .ph .cap small{display:block;font-weight:400;color:#c3d2e8;font-size:11px;}
+  .ph.tall{grid-row:span 2;min-height:0;}
+  .statband{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:12px;}
+  @media(max-width:860px){.statband{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:520px){.statband{grid-template-columns:repeat(3,1fr);gap:6px;}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 6px;text-align:center;box-shadow:var(--shadow);}
+  .stat .n{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--ink);}
+  .stat .l{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-top:2px;}
+
+  .weekstrip{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none;}
+  .weekstrip::-webkit-scrollbar{display:none;}
+  .wk{flex:none;width:116px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--glacier);border-radius:12px;padding:10px 11px;box-shadow:var(--shadow);cursor:pointer;}
+  .wk:hover{border-color:var(--glacier);}
+  .wk .wd{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);}
+  .wk .wt{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--ink);margin:2px 0 3px;}
+  .wk .wx{font-size:10.5px;color:var(--muted);line-height:1.35;}
+  .wk.hot{border-top-color:var(--amber);} .wk.trav{border-top-color:var(--navy);} .wk.send{border-top-color:var(--red);}
+
+  .live{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+  @media(max-width:700px){.live{grid-template-columns:repeat(2,1fr);}}
+  .live a{display:block;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 13px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);}
+  .live a:hover{border-color:var(--glacier);}
+  .live .lt{font-size:12.5px;font-weight:650;}
+  .live .ls{font-size:10.5px;color:var(--glacier);font-weight:600;margin-top:2px;}
+
+  .ready{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+  @media(max-width:700px){.ready{grid-template-columns:repeat(2,1fr);}}
+  .rd{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 13px;box-shadow:var(--shadow);cursor:pointer;}
+  .rd:hover{border-color:var(--glacier);}
+  .rd .rt{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);}
+  .rd .rn{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-top:2px;}
+
+  .tonight{background:linear-gradient(135deg,#3a2606,#6b4a10);color:#fff;border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .tonight .ti{font-size:26px;}
+  .tonight h3{font-family:'Fraunces',serif;font-size:17px;color:#ffd89a;margin-bottom:2px;}
+  .tonight p{font-size:12.5px;color:#ecd9b6;}
+  .tonight p b{color:#fff;}
+
+  .costband{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:var(--shadow);}
+  .costband .cb-n{font-family:'Fraunces',serif;font-size:26px;font-weight:700;}
+  .costband .cb-s{font-size:12.5px;color:var(--muted);max-width:480px;}
+
+  /* ---------- planning-stage board ---------- */
+  .planning-board{background:linear-gradient(145deg,#0b1a31,#18335d);color:#fff;border-radius:20px;padding:22px;box-shadow:0 18px 44px -20px rgba(9,21,41,.65);position:relative;overflow:hidden;}
+  .planning-board::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-120px;top:-160px;background:radial-gradient(circle,rgba(89,154,255,.23),transparent 68%);pointer-events:none;}
+  .pb-top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;position:relative;z-index:2;}
+  .pb-kicker{font-size:10px;font-weight:750;letter-spacing:2px;text-transform:uppercase;color:#ff9bad;margin-bottom:7px;}
+  .pb-title{font-family:'Fraunces',serif;font-size:clamp(23px,4vw,32px);font-weight:600;line-height:1.08;}
+  .pb-copy{color:#b9c8dc;font-size:12.5px;max-width:620px;margin-top:7px;}
+  .pb-score{width:106px;height:106px;border-radius:50%;display:grid;place-items:center;text-align:center;background:conic-gradient(var(--red) var(--pb-progress,0%),rgba(255,255,255,.12) 0);position:relative;flex:none;}
+  .pb-score::before{content:"";position:absolute;inset:8px;border-radius:50%;background:#102442;}
+  .pb-score span{position:relative;z-index:2;display:block;}
+  .pb-score b{font-family:'Fraunces',serif;font-size:25px;display:block;line-height:1;}
+  .pb-score small{font-size:8.5px;text-transform:uppercase;letter-spacing:1.1px;color:#9eb4d0;}
+  .planning-route{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin:22px 0 18px;position:relative;z-index:2;}
+  .planning-route::before{content:"";position:absolute;left:7%;right:7%;top:20px;height:2px;background:rgba(255,255,255,.14);}
+  .pgate{position:relative;text-align:center;min-width:0;}
+  .pgate .pnode{width:42px;height:42px;margin:0 auto 7px;border-radius:50%;display:grid;place-items:center;background:#1b3a68;border:2px solid rgba(255,255,255,.2);font-weight:750;position:relative;z-index:2;color:#b9c8dc;}
+  .pgate.done .pnode{background:var(--pine);border-color:#83e1bd;color:#fff;}
+  .pgate.now .pnode{background:var(--red);border-color:#ff9bad;color:#fff;box-shadow:0 0 0 5px rgba(200,16,46,.18);}
+  .pgate .plabel{font-size:10.5px;font-weight:650;color:#cfdaea;line-height:1.25;}
+  .pgate .pstate{font-size:8.5px;color:#728dab;text-transform:uppercase;letter-spacing:.7px;margin-top:2px;}
+  .pgate.done .pstate{color:#83e1bd}.pgate.now .pstate{color:#ff9bad;}
+  .pb-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;position:relative;z-index:2;}
+  .pb-actions .btn{background:var(--red)}.pb-actions .btn:hover{background:var(--red-d)}
+  .pb-local{font-size:10.5px;color:#8fa9d4;flex:1;min-width:220px;}
+  .unlock{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--amber);border-radius:14px;padding:15px 16px;margin-top:12px;box-shadow:var(--shadow);}
+  .unlock .ui{font-size:24px}.unlock h3{font-size:13.5px;margin-bottom:2px}.unlock p{font-size:11.8px;color:var(--muted)}
+  .unlock .chip{white-space:nowrap;}
+  .opt{cursor:pointer;font-family:inherit;transition:.15s ease;}
+  button.opt:hover{border-color:var(--glacier);color:var(--glacier);}
+  button.opt.chosen{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 4px 12px -7px rgba(9,21,41,.7);}
+  button.opt.chosen.rec{background:var(--pine);border-color:var(--pine);color:#fff;}
+  .decision-foot{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);font-size:10.5px;color:var(--faint);}
+  .decision-foot b{color:var(--ink);font-weight:650;}
+  @media(max-width:760px){
+    .pb-top{grid-template-columns:1fr}.pb-score{width:88px;height:88px;position:absolute;right:0;top:0;opacity:.96}.pb-title,.pb-copy{padding-right:100px}
+    .planning-route{display:flex;overflow-x:auto;padding:3px 2px 8px;scroll-snap-type:x mandatory}.planning-route::before{display:none}.pgate{min-width:94px;scroll-snap-align:start}
+    .unlock{grid-template-columns:auto 1fr}.unlock .chip{grid-column:2;justify-self:start}
+  }
+  @media(max-width:480px){.planning-board{padding:18px 15px}.pb-score{position:relative;width:82px;height:82px;margin-top:10px}.pb-title,.pb-copy{padding-right:0}.pb-actions .btn{width:100%}.pb-local{min-width:0}.unlock{padding:13px}.unlock .ui{display:none}}
+
+  /* ---------- resort decision carousel ---------- */
+  .option-intro{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:16px;}
+  .option-intro h2{font-size:clamp(27px,5vw,40px);line-height:1.05;}
+  .option-intro .sub{margin:7px 0 0;max-width:660px;}
+  .choice-status{background:var(--navy);color:#fff;border-radius:13px;padding:11px 14px;min-width:180px;box-shadow:var(--shadow);}
+  .choice-status small{display:block;color:#8fa9d4;text-transform:uppercase;letter-spacing:1.2px;font-size:8.5px;font-weight:700;}
+  .choice-status b{font-family:'Fraunces',serif;font-size:16px;font-weight:600;display:block;margin-top:2px;}
+  .option-carousel{position:relative;}
+  .carousel-viewport{overflow:hidden;border-radius:20px;box-shadow:0 18px 44px -24px rgba(9,21,41,.55);}
+  .carousel-track{display:flex;transition:transform .45s cubic-bezier(.22,.72,.25,1);will-change:transform;}
+  .resort-slide{flex:0 0 100%;min-width:0;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;}
+  .resort-hero{min-height:230px;padding:26px;position:relative;color:#fff;display:flex;align-items:end;background-size:cover;background-position:center;overflow:hidden;}
+  .resort-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,31,.13),rgba(6,16,31,.88));}
+  .resort-hero>div{position:relative;z-index:2;max-width:720px;}
+  .resort-rank{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(8px);border-radius:999px;padding:5px 10px;font-size:9px;font-weight:750;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+  .resort-hero h3{font-family:'Fraunces',serif;font-size:clamp(31px,6vw,50px);font-weight:600;line-height:1;margin-bottom:6px;}
+  .resort-hero p{font-size:13px;color:#dce6f3;max-width:640px;}
+  .resort-body{padding:20px;}
+  .decision-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:14px;}
+  .map-panel{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#e8edf3;min-height:255px;position:relative;}
+  .map-panel iframe{border:0;width:100%;height:255px;display:block;filter:saturate(.78) contrast(.96);}
+  .map-label{position:absolute;left:10px;bottom:10px;right:10px;background:rgba(13,29,54,.91);color:#fff;border-radius:10px;padding:8px 10px;font-size:10.5px;display:flex;justify-content:space-between;gap:8px;align-items:center;}
+  .map-label a{color:#bcd5ff;text-decoration:none;font-weight:650;white-space:nowrap;}
+  .decision-stack{display:grid;gap:9px;}
+  .decision-card{border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fbfaf7;}
+  .decision-card .ey{font-size:8.5px;font-weight:750;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-bottom:3px;}
+  .decision-card strong{font-size:13px;display:block;color:var(--ink);}
+  .decision-card p{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .run-mix{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px;}
+  .run-stat{border-radius:12px;padding:10px;text-align:center;background:var(--glacier-bg);border:1px solid #c4d8f4;}
+  .run-stat b{font-family:'Fraunces',serif;font-size:18px;display:block;color:#174a96;}
+  .run-stat span{font-size:8.5px;text-transform:uppercase;letter-spacing:.8px;color:#4f6f99;font-weight:700;}
+  .tradeoff{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px;}
+  .trade{border-radius:13px;padding:12px 13px;font-size:11.5px;}
+  .trade b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+  .trade.win{background:var(--pine-bg);color:#185f4b;border:1px solid #a6d8c5;}.trade.watch{background:var(--amber-bg);color:#7b550e;border:1px solid #ead9ae;}
+  .slide-actions{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+  .slide-actions .sources{font-size:10.5px;color:var(--faint);}.slide-actions .sources a{color:var(--glacier);text-decoration:none;font-weight:600;}
+  .pick-resort.selected{background:var(--pine);}.pick-resort.selected::after{content:" ✓";}
+  .carousel-controls{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-top:13px;}
+  .car-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:var(--shadow);}
+  .car-arrow:disabled{opacity:.35;cursor:default;}
+  .car-dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+  .car-dot{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:7px 11px;font-family:inherit;font-size:10.5px;font-weight:650;color:var(--muted);cursor:pointer;}
+  .car-dot.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .compare-note{font-size:10.5px;color:var(--faint);text-align:center;margin-top:10px;}
+  .top-resort-tabs{position:sticky;top:57px;z-index:48;background:rgba(245,244,240,.94);backdrop-filter:blur(12px);padding:10px 0 12px;margin:-10px 0 18px;border-bottom:1px solid rgba(207,204,194,.65);}
+  .top-resort-tabs .car-dots{justify-content:flex-start;gap:10px;overflow-x:auto;flex-wrap:nowrap;padding:2px;scrollbar-width:none;}
+  .top-resort-tabs .car-dots::-webkit-scrollbar{display:none;}
+  .top-resort-tabs .car-dot{font-size:13px;padding:10px 18px;min-height:44px;flex:none;background:#fff;border:1px solid var(--line2);box-shadow:none;}
+  .top-resort-tabs .car-dot span{display:block;line-height:1.05;}
+  .top-resort-tabs .car-dot small{display:block;margin-top:4px;font-size:8px;line-height:1;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);}
+  .top-resort-tabs .car-dot.on{background:var(--navy);border-color:var(--navy);box-shadow:0 8px 18px -12px rgba(13,29,54,.8);}
+  .top-resort-tabs .car-dot.on small{color:#9fb4d4;}
+  .photo-story{display:grid;grid-template-columns:1.65fr .72fr;gap:8px;height:285px;margin-bottom:14px;}
+  .story-main,.story-side{position:relative;overflow:hidden;border-radius:15px;background:var(--navy);}
+  .story-main img,.story-side img{width:100%;height:100%;object-fit:cover;display:block;}
+  .story-main img{animation:photoDrift 16s ease-in-out infinite alternate;transform-origin:center;}
+  .story-side{display:grid;grid-template-rows:1fr 1fr;gap:8px;background:transparent;border-radius:0;}
+  .story-side .story-shot{border-radius:13px;overflow:hidden;position:relative;background:var(--navy);}
+  .story-side .story-shot:nth-child(1) img{animation:photoDrift 19s ease-in-out infinite alternate-reverse;}
+  .story-side .story-shot:nth-child(2) img{animation:photoDrift 22s ease-in-out infinite alternate;}
+  @keyframes photoDrift{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.1) translate3d(-1.5%,1%,0)}}
+  .route-ribbon{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;background:rgba(9,21,41,.82);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);border-radius:999px;padding:8px 12px;color:#dbe6f3;font-size:10.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px;text-align:center;}
+  .route-ribbon b{color:#fff}.route-ribbon i{font-style:normal;color:#ff9bad;}
+  .rating-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .resort-rating{border:1px solid var(--line);background:#fbfaf7;border-radius:13px;padding:12px;min-height:98px;position:relative;overflow:hidden;}
+  .resort-rating::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rating,var(--glacier));}
+  .resort-rating .r-label{font-size:8.5px;text-transform:uppercase;letter-spacing:1.1px;font-weight:750;color:var(--faint);}
+  .resort-rating .r-verdict{font-family:'Fraunces',serif;font-size:17px;line-height:1.1;font-weight:650;color:var(--ink);margin:4px 0 5px;}
+  .resort-rating .r-proof{font-size:10.5px;line-height:1.35;color:var(--muted);}
+  .resort-rating.easy{--rating:#2389db}.resort-rating.cruise{--rating:#c8102e}.resort-rating.expert{--rating:#242a35}.resort-rating.snowy{--rating:#65b7d7}.resort-rating.party{--rating:#c97f10}.resort-rating.travel{--rating:#6d5ac7}.resort-rating.value{--rating:#0c7d5c}.resort-rating.stay{--rating:#9a6b3d}
+  .resort-take{display:flex;gap:10px;align-items:center;background:var(--navy);color:#fff;border-radius:13px;padding:12px 14px;margin-top:12px;}
+  .resort-take .take-icon{font-size:23px}.resort-take b{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#ff9bad;display:block}.resort-take span{font-size:12px;color:#d2deed;}
+  .ucpa-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+  .ucpa-fact{border:1px solid #c9dcef;background:#f4f8fc;border-radius:13px;padding:11px 12px;}
+  .ucpa-fact small{display:block;font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#5e7595;font-weight:750;}
+  .ucpa-fact b{display:block;margin-top:4px;font-family:'Fraunces',serif;font-size:17px;color:var(--ink);line-height:1.1;}
+  .ucpa-fact span{display:block;margin-top:4px;font-size:10px;line-height:1.3;color:var(--muted);}
+  .package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .package-card{border:1px solid var(--line);border-radius:15px;background:#fbfaf7;padding:14px;position:relative;overflow:hidden;}
+  .package-card.recommended{border-color:#76bca5;background:#f1faf6;box-shadow:inset 0 3px 0 var(--pine);}
+  .package-card .p-kicker{font-size:8px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:var(--faint);}
+  .package-card h4{font-family:'Fraunces',serif;font-size:19px;line-height:1.08;margin:5px 0 8px;color:var(--ink);}
+  .package-price{font-family:'Fraunces',serif;font-size:25px;font-weight:650;color:var(--pine);line-height:1;}
+  .package-price small{font-family:'Inter',sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);}
+  .package-card p{font-size:10.5px;line-height:1.4;color:var(--muted);margin-top:8px;}
+  .package-card ul{margin:9px 0 0;padding-left:16px;font-size:10px;line-height:1.45;color:var(--muted);}
+  .included-list{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;}
+  .included-list b{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.9px;color:var(--pine);margin-bottom:5px;}
+  .included-list ul{margin:0;padding-left:16px;}
+  .package-total{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:end;}
+  .package-total span{font-size:8px;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);font-weight:700;}
+  .package-total b{font-family:'Fraunces',serif;font-size:18px;color:var(--ink);white-space:nowrap;}
+  .truth-strip{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px;}
+  .truth-card{border-radius:13px;padding:11px 13px;font-size:10.5px;line-height:1.4;}
+  .truth-card b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.9px;margin-bottom:3px;}
+  .truth-card.room{background:var(--amber-bg);border:1px solid #ead9ae;color:#77510c;}.truth-card.travel{background:var(--glacier-bg);border:1px solid #c4d8f4;color:#285884;}
+  .ucpa-alts{margin-top:12px;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;}
+  .ucpa-alts-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:9px;}
+  .ucpa-alts-head h4{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);}
+  .ucpa-alts-head span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.8px;}
+  .ucpa-alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .ucpa-alt{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fbfaf7;display:grid;grid-template-columns:1fr auto;gap:7px 12px;align-items:start;}
+  .ucpa-alt h5{font-family:'Fraunces',serif;font-size:17px;color:var(--ink);}
+  .ucpa-alt .alt-price{text-align:right;font-family:'Fraunces',serif;font-size:17px;color:var(--pine);white-space:nowrap;}
+  .ucpa-alt .alt-price small{display:block;font-family:'Inter',sans-serif;font-size:7.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);}
+  .ucpa-alt p{grid-column:1/-1;font-size:10.5px;line-height:1.4;color:var(--muted);}
+  .ucpa-alt .alt-meta{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;}
+  .ucpa-alt .alt-meta span{font-size:8.5px;border-radius:999px;padding:4px 7px;background:var(--glacier-bg);color:#285884;border:1px solid #c4d8f4;}
+  .cost-clarity{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px;}
+  .cost-col{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;}
+  .cost-col b{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.9px;margin-bottom:5px;}
+  .cost-col.in b{color:var(--pine)}.cost-col.out b{color:var(--red-d)}
+  .cost-col ul{margin:0;padding-left:15px;font-size:9.5px;line-height:1.45;color:var(--muted);}
+  .car-position{text-align:center;color:var(--faint);font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  @media(prefers-reduced-motion:reduce){.story-main img,.story-side img{animation:none!important}.carousel-track{transition:none}}
+  @media(max-width:760px){.option-intro{align-items:stretch;flex-direction:column}.choice-status{min-width:0}.decision-grid{grid-template-columns:1fr}.map-panel,.map-panel iframe{height:215px;min-height:215px}.resort-hero{min-height:205px;padding:21px}.run-mix{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:820px){.rating-grid{grid-template-columns:repeat(2,1fr)}.photo-story{height:250px;grid-template-columns:1.45fr .72fr}.package-grid{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.ucpa-alt-grid,.cost-clarity{grid-template-columns:1fr}}
+  @media(max-width:500px){.resort-body{padding:13px}.resort-hero{padding:18px;min-height:190px}.tradeoff{grid-template-columns:1fr}.carousel-controls{gap:7px}.car-arrow{width:39px;height:39px}.slide-actions .btn{width:100%}.top-resort-tabs{top:57px;margin:-18px -18px 14px;padding:9px 16px 10px}.top-resort-tabs .car-dot{padding:9px 15px;font-size:12px}.photo-story{height:230px;grid-template-columns:1fr}.story-side{display:none}.rating-grid{grid-template-columns:1fr 1fr}.resort-rating{min-height:94px;padding:10px}.resort-rating .r-verdict{font-size:15px}.route-ribbon{font-size:9.5px;left:8px;right:8px}.option-intro h2{font-size:30px}.truth-strip{grid-template-columns:1fr}.ucpa-summary{grid-template-columns:1fr 1fr}.ucpa-alts-head{align-items:start;flex-direction:column}}
+
+  /* ---------- days ---------- */
+  .daypick{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none;}
+  .daypick::-webkit-scrollbar{display:none;}
+  .dbtn{flex:none;border:1px solid var(--line);border-left:4px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;font-family:inherit;cursor:pointer;text-align:center;min-width:62px;transition:all .15s;min-height:48px;}
+  .dbtn .dw{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);display:block;}
+  .dbtn .dn{font-size:15px;font-weight:700;color:var(--ink);font-family:'Fraunces',serif;}
+  .dbtn.on{background:var(--navy);border-color:var(--navy);border-left-color:var(--red);}
+  .dbtn.on .dw{color:#ff8da0;} .dbtn.on .dn{color:#fff;}
+  .modebar{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
+  .toggle{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;}
+  .toggle button{border:none;background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);padding:8px 14px;cursor:pointer;min-height:38px;}
+  .toggle button.on{background:var(--navy);color:#fff;}
+  .meet{display:flex;align-items:center;gap:8px;background:var(--amber-bg);border:1px solid #ead9ae;border-radius:11px;padding:9px 13px;font-size:12.5px;color:#7c5408;font-weight:600;margin-bottom:12px;}
+  .tl{border-left:2px solid var(--line2);}
+  .tlrow{display:grid;grid-template-columns:58px 26px 1fr;gap:8px;align-items:start;padding:8px 0;position:relative;}
+  .tlrow::before{content:"";position:absolute;left:-5px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--line2);}
+  .tlrow.ski::before{background:var(--glacier);} .tlrow.apres::before{background:var(--amber);} .tlrow.food::before{background:var(--pine);} .tlrow.travel::before{background:var(--navy);} .tlrow.flex::before{background:var(--red);}
+  .tlrow .tt{font-size:11px;font-weight:700;color:var(--faint);padding-top:2px;text-align:right;}
+  .tlrow .ic{font-size:14px;text-align:center;}
+  .tlrow .tx{font-size:13px;color:var(--muted);}
+  .tlrow .tx b{color:var(--ink);font-weight:600;}
+  .tlrow .note{display:block;font-size:11.5px;color:var(--faint);margin-top:2px;}
+  body.compact .tlrow .note{display:none;}
+  .who{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:1px;}
+  .who.g{background:var(--glacier-bg);color:#174a96;} .who.j{background:var(--navy);color:#fff;} .who.a{background:var(--pine-bg);color:var(--pine);}
+  .st{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:1px;}
+  .st.draft{background:#eef0f3;color:var(--faint);} .st.conf{background:var(--pine-bg);color:var(--pine);} .st.flexs{background:var(--caution-bg);color:var(--red-d);} .st.book{background:var(--amber-bg);color:#9a6008;}
+
+  /* ---------- ski ---------- */
+  .banner{background:#2e1210;color:#fff;border-radius:14px;padding:16px 18px;display:flex;gap:13px;align-items:flex-start;}
+  .banner h3{font-size:15px;color:#ff9d92;margin-bottom:2px;font-family:'Fraunces',serif;}
+  .banner p{font-size:12.5px;color:#e3c4bf;}
+  .banner p b{color:#fff;}
+  .banner .no{font-size:21px;line-height:1.2;}
+  .banner details.why summary{color:#ffb3aa;}
+  .banner details.why p{color:#e3c4bf;}
+  .planabc{border-top:3px solid var(--glacier);}
+  .planabc.b{border-top-color:var(--amber);} .planabc.c{border-top-color:var(--red);}
+  .route .rstep{display:grid;grid-template-columns:30px 1fr;gap:11px;padding:8px 0;border-bottom:1px dashed var(--line2);}
+  .route .rstep:last-of-type{border-bottom:none;}
+  .route .num{width:24px;height:24px;border-radius:50%;background:var(--pine);color:#fff;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;}
+  .route h4{font-size:13px;font-weight:650;}
+  .route p{font-size:12px;color:var(--muted);}
+  .maplegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:var(--muted);align-items:center;}
+  .maplegend span{display:inline-flex;align-items:center;gap:6px;}
+  .gdot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+
+  /* ---------- places ---------- */
+  .filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px;scrollbar-width:none;}
+  .filters::-webkit-scrollbar{display:none;}
+  .fbtn{flex:none;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;min-height:38px;}
+  .fbtn.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media(max-width:860px){.pcards{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.pcards{grid-template-columns:1fr;}}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:7px;}
+  .pcard .pt{font-size:14px;font-weight:650;display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+  .pcard .pl{font-size:12.3px;color:var(--muted);flex:1;}
+  .pcard .pb{font-size:11px;color:var(--faint);}
+  .pcard .pa{display:flex;gap:7px;margin-top:2px;}
+  .pcard .pa a{font-size:11.5px;font-weight:600;color:var(--glacier);text-decoration:none;border:1px solid #c4d8f4;border-radius:8px;padding:5px 10px;}
+  .pcard .pa a:hover{background:var(--glacier-bg);}
+
+  /* ---------- kit ---------- */
+  .subnav{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:none;}
+  .subnav::-webkit-scrollbar{display:none;}
+  .kview{display:none;}
+  .kview.on{display:block;animation:fadein .2s ease;}
+  .bcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0;box-shadow:var(--shadow);overflow:hidden;position:relative;}
+  .bcard .bhead2{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 15px 10px;border-bottom:1px dashed var(--line2);}
+  .bcard .bhead2 h3{font-size:14px;font-weight:650;}
+  .bcard .bbody{padding:10px 15px 13px;}
+  .bcard::before,.bcard::after{content:"";position:absolute;top:44px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:1px solid var(--line);}
+  .bcard::before{left:-8px;} .bcard::after{right:-8px;}
+  .bsel{font-family:inherit;font-size:11.5px;font-weight:700;border-radius:8px;padding:6px 8px;border:1px solid var(--line2);background:#fff;color:var(--muted);cursor:pointer;}
+  .bsel.s2{background:var(--glacier-bg);color:#174a96;border-color:#c4d8f4;}
+  .bsel.s3{background:var(--amber-bg);color:#9a6008;border-color:#ead9ae;}
+  .bsel.s4{background:var(--pine-bg);color:var(--pine);border-color:#9ed3bf;}
+  .bsel.s5{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .bref{width:100%;margin-top:8px;padding:7px 9px;border:1px dashed var(--line2);border-radius:8px;font-family:inherit;font-size:12px;color:var(--ink);background:#fbfaf7;}
+  .budgetrow{display:grid;grid-template-columns:1.5fr 96px 84px 50px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+  .budgetrow:last-of-type{border-bottom:none;}
+  .budgetrow .cat{font-size:10.5px;color:var(--faint);display:block;}
+  .budgetrow input[type=number]{width:100%;padding:6px 8px;border:1px solid var(--line2);border-radius:8px;font-family:inherit;font-size:13px;color:var(--ink);}
+  .budgetrow .paid input{width:17px;height:17px;accent-color:var(--pine);}
+  .bhead{font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint);}
+  .totals{background:var(--navy);color:#fff;border-radius:13px;padding:15px 17px;margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media(max-width:640px){.totals{grid-template-columns:1fr 1fr;}}
+  .totals .n{font-size:19px;font-weight:700;font-family:'Fraunces',serif;}
+  .totals .l{font-size:10px;color:#a8b8cf;letter-spacing:1px;text-transform:uppercase;}
+  .hc{display:flex;align-items:center;gap:9px;margin-bottom:12px;font-size:13px;color:var(--muted);flex-wrap:wrap;}
+  .hc input{width:64px;padding:7px 9px;border:1px solid var(--line2);border-radius:8px;font-size:13.5px;font-weight:600;color:var(--ink);}
+  .check{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
+  .check:last-child{border-bottom:none;}
+  .check input{width:18px;height:18px;margin-top:1px;accent-color:var(--red);cursor:pointer;flex:none;}
+  .check label{cursor:pointer;}
+  .check label small{color:var(--faint);font-size:11.5px;display:block;}
+  .check input:checked + label{color:var(--faint);text-decoration:line-through;}
+  .dcard{border-left:4px solid var(--amber);}
+  .dcard.done{border-left-color:var(--pine);opacity:.72;}
+  .dmeta{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0;}
+  .opt{display:inline-block;border:1px solid var(--line2);border-radius:8px;padding:4px 10px;font-size:11.5px;color:var(--muted);background:#fbfaf7;}
+  .opt.rec{border-color:#9ed3bf;background:var(--pine-bg);color:var(--pine);font-weight:650;}
+  textarea.notes{width:100%;min-height:130px;border:1px solid var(--line2);border-radius:12px;padding:12px;font-family:inherit;font-size:13px;color:var(--ink);resize:vertical;background:#fff;}
+  .wallet .kv span:last-child{display:flex;gap:8px;align-items:center;justify-content:flex-end;}
+  .copy{border:1px solid var(--line2);background:#fff;border-radius:7px;font-size:10.5px;font-weight:600;color:var(--glacier);padding:3px 8px;cursor:pointer;font-family:inherit;}
+  .copy:hover{background:var(--glacier-bg);}
+
+  /* ---------- help drawer ---------- */
+  .drawer{position:fixed;inset:0;z-index:90;display:none;}
+  .drawer.on{display:block;}
+  .drawer .dim{position:absolute;inset:0;background:rgba(9,21,41,.55);backdrop-filter:blur(3px);}
+  .drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(420px,92vw);background:#fff;box-shadow:-12px 0 40px rgba(9,21,41,.3);padding:22px;overflow-y:auto;}
+  .drawer h2{font-size:21px;}
+  .drawer .panel .closex{position:absolute;top:14px;right:14px;border:1px solid var(--line2);background:#fff;border-radius:999px;width:34px;height:34px;cursor:pointer;font-size:15px;color:var(--muted);}
+  .emnum{display:flex;justify-content:space-between;align-items:center;background:var(--caution-bg);border:1px solid #eebbb7;border-radius:11px;padding:11px 14px;margin-bottom:8px;}
+  .emnum b{font-family:'Fraunces',serif;font-size:20px;color:var(--red-d);}
+  .emnum span{font-size:12px;color:var(--muted);}
+
+  table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px;}
+  .tablewrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow);}
+  th{background:var(--navy);color:#fff;text-align:left;padding:9px 13px;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;}
+  td{padding:10px 13px;border-top:1px solid var(--line);vertical-align:top;color:var(--muted);}
+  td:first-child{color:var(--ink);font-weight:600;}
+  tr:nth-child(odd) td{background:#fbfaf7;}
+
+  footer{padding:26px 0 50px;color:var(--faint);font-size:11px;border-top:1px solid var(--line);line-height:1.7;}
+  footer a{color:var(--faint);}
+  .reset{border:1px dashed var(--line2);background:none;color:var(--faint);font-family:inherit;font-size:11px;border-radius:9px;padding:7px 12px;cursor:pointer;margin-top:10px;}
+  .reset:hover{color:var(--red-d);border-color:#eebbb7;}
+</style>
+</head>
+<body>
+
+<div class="flagband" aria-hidden="true"></div>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="photo" id="heroPhoto" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg');"></div>
+  <div class="scrim"></div>
+  <div class="snow" aria-hidden="true">
+    <span style="left:6%;animation-duration:7s;">❄</span>
+    <span style="left:18%;animation-duration:9s;animation-delay:2s;">❅</span>
+    <span style="left:31%;animation-duration:6.5s;animation-delay:1s;">❄</span>
+    <span style="left:44%;animation-duration:8s;animation-delay:3s;">❆</span>
+    <span style="left:57%;animation-duration:7.5s;animation-delay:.5s;">❄</span>
+    <span style="left:69%;animation-duration:9.5s;animation-delay:2.5s;">❅</span>
+    <span style="left:81%;animation-duration:6.8s;animation-delay:1.5s;">❄</span>
+    <span style="left:92%;animation-duration:8.5s;animation-delay:4s;">❆</span>
+  </div>
+  <div class="wrap">
+    <div class="kicker">January 2027 · two possible weeks · group of 8</div>
+    <h1>Ski Week <em>’27</em></h1>
+    <p class="concept">Two weeks. Five ways to do it.</p>
+    <div class="heromTA">
+      <span class="hchip"><b>9–16 Jan</b> · UCPA week</span>
+      <span class="hchip"><b>16–23 Jan</b> · resort week</span>
+      <span class="hchip"><b>5</b> choices</span>
+      <span class="hchip"><b>8</b> travellers</span>
+      <span class="hchip" id="countChip"><b>—</b></span>
+    </div>
+  </div>
+  <svg class="pano" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 170 L0 110 L170 48 L310 112 L450 26 L590 100 L730 12 L890 106 L1040 44 L1200 116 L1330 62 L1440 104 L1440 170 Z" fill="#1b3560" fill-opacity="0.92"/>
+    <path d="M450 26 L470 46 L430 46 Z M730 12 L752 34 L708 34 Z M1040 44 L1060 64 L1020 64 Z" fill="#e9eef7"/>
+    <path d="M60 84 C 420 28, 1020 28, 1380 76" fill="none" stroke="#8fa9d4" stroke-width="1.6"/>
+    <g>
+      <line x1="370" y1="46" x2="370" y2="58" stroke="#8fa9d4" stroke-width="1.6"/><rect x="361" y="58" width="18" height="13" rx="3" fill="#c8102e"/><rect x="365" y="61" width="10" height="5" rx="1" fill="#fff" opacity=".85"/>
+      <line x1="720" y1="33" x2="720" y2="45" stroke="#8fa9d4" stroke-width="1.6"/><rect x="711" y="45" width="18" height="13" rx="3" fill="#c8102e"/><rect x="715" y="48" width="10" height="5" rx="1" fill="#fff" opacity=".85"/>
+      <line x1="1080" y1="42" x2="1080" y2="54" stroke="#8fa9d4" stroke-width="1.6"/><rect x="1071" y="54" width="18" height="13" rx="3" fill="#c8102e"/><rect x="1075" y="57" width="10" height="5" rx="1" fill="#fff" opacity=".85"/>
+    </g>
+    <path d="M0 170 L0 132 L210 84 L380 138 L560 70 L740 132 L920 78 L1100 140 L1280 98 L1440 134 L1440 170 Z" fill="#f5f4f0"/>
+  </svg>
+</div>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" aria-label="Trip sections"><div class="wrap">
+  <button class="tab on" data-v="home">Resort options</button>
+  <button class="tab" data-v="days">St Anton week</button>
+  <button class="tab" data-v="ski">St Anton mountain</button>
+  <button class="tab" data-v="places">St Anton places</button>
+  <button class="tab" data-v="kit">St Anton draft</button>
+  <button class="helpbtn" data-help>⛑ Help</button>
+</div></nav>
+
+<!-- ================= HOME ================= -->
+<div class="view on" id="v-home"><div class="wrap">
+
+  <section class="hm-options" aria-labelledby="optionsTitle">
+    <div class="top-resort-tabs"><div class="car-dots" id="optionDots" aria-label="Choose a resort"></div></div>
+    <div class="option-intro">
+      <div>
+        <div class="mini" style="color:var(--red);">The shortlist · two January weeks</div>
+        <h2 id="optionsTitle">Choose the kind of ski week we want</h2>
+        <p class="sub">UCPA is the coached, all-in week on 9–16 January. The resort-and-chalet choices sit in the following week, 16–23 January.</p>
+      </div>
+      <div class="choice-status"><small>Your saved preference</small><b id="resortChoiceLabel">No pick yet</b></div>
+    </div>
+
+    <div class="option-carousel" id="optionCarousel" tabindex="0" aria-label="Ski resort options carousel">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="optionTrack">
+
+          <article class="resort-slide" data-resort="ucpa" aria-label="UCPA Val Thorens option">
+            <div class="resort-hero" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg')">
+              <div><span class="resort-rank">🇫🇷 9–16 Jan · coached all-in week</span><h3>UCPA · Val Thorens</h3><p>The quickest route to better skiing: live on the piste, eat together and put the newer skiers and snowboarders into the right coaching groups every day.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Val-thorens-panorama.jpg/1920px-Val-thorens-panorama.jpg" alt="Val Thorens winter panorama"><div class="route-ribbon"><span>London</span><i>✈</i><span>Geneva</span><i>🚌</i><b>Val Thorens</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_%28hiver_2019%29.JPG/1920px-Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_%28hiver_2019%29.JPG" alt="Piste junction at Val Thorens"></div><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ski_%C3%A0_Val_Thorens_%282016%29.JPG/1920px-Ski_%C3%A0_Val_Thorens_%282016%29.JPG" alt="Skiing at Val Thorens"></div></div>
+              </div>
+              <div class="ucpa-summary">
+                <div class="ucpa-fact"><small>What is included</small><b>Almost everything</b><span>Bed · all meals · lift pass · equipment · coaching · bedding</span></div>
+                <div class="ucpa-fact"><small>Beginner fit</small><b>Excellent</b><span>Dedicated beginner programme and high, snow-sure learning terrain</span></div>
+                <div class="ucpa-fact"><small>The experience</small><b>Communal ski lodge</b><span>Buffet meals, shared rooms, bar and ski-in/ski-out access</span></div>
+                <div class="ucpa-fact"><small>Still to add</small><b>Flight + transfer</b><span>Insurance and personal ski clothing also sit outside the package</span></div>
+              </div>
+              <div class="package-grid">
+                <div class="package-card recommended">
+                  <div class="p-kicker">Best for true beginners</div><h4>Learn fast · two four-person rooms</h4>
+                  <div class="package-price">~£924 <small>UCPA pp</small></div>
+                  <p>The full-time beginner course has 9–10 coached sessions. It is the correct route for anyone starting from zero.</p>
+                  <div class="included-list"><b>£924 includes</b><ul><li>Accommodation + bedding</li><li>Breakfast, lunch or packed lunch, and dinner</li><li>Lift pass + skis/board, boots and poles</li><li>9–10 beginner coaching sessions</li></ul></div>
+                  <ul><li>Official 10 Jan group-rate reference: €1,062</li><li>Two paired four-person rooms; each has a shower + sink and shares toilets with the paired room</li></ul>
+                  <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,086 pp</b></div>
+                </div>
+                <div class="package-card">
+                  <div class="p-kicker">Best for improvers</div><h4>Half-day coaching · two four-person rooms</h4>
+                  <div class="package-price">~£854 <small>UCPA pp</small></div>
+                  <p>About 12 hours of coaching Monday–Friday, leaving half the day to practise together. Not suitable for complete beginners.</p>
+                  <div class="included-list"><b>£854 includes</b><ul><li>Accommodation + bedding</li><li>Breakfast, lunch or packed lunch, and dinner</li><li>Lift pass + skis/board, boots and poles</li><li>About 12 hours of coaching, Monday–Friday</li></ul></div>
+                  <ul><li>Official 10 Jan group-rate reference: €981</li><li>For people already confident on greens and most blues</li><li>Different ability groups can book the same week</li></ul>
+                  <div class="package-total"><span>With £68 flight + £94 transfer</span><b>~£1,016 pp</b></div>
+                </div>
+                <div class="package-card">
+                  <div class="p-kicker">Comfort-first fallback</div><h4>Four ensuite twin rooms</h4>
+                  <div class="package-price">TBC <small>room supplement</small></div>
+                  <p>Limited ensuite twins replace the shared-room setup. This gives the group privacy, but availability and the supplement need a direct UCPA quote.</p>
+                  <ul><li>Choose beginner or half-time coaching by actual ability</li><li>Scarcer than standard rooms; ask UCPA before committing flights</li><li>Four rooms required for eight travellers</li></ul>
+                  <div class="package-total"><span>Base trip before supplement</span><b>£1,016–1,086 pp</b></div>
+                </div>
+              </div>
+              <div class="truth-strip">
+                <div class="truth-card room"><b>Room reality</b>There is no published 8–10-person ensuite dorm at this centre. The closest group setup is two paired four-person rooms; the privacy option is four limited ensuite twins.</div>
+                <div class="truth-card travel"><b>Outside every UCPA price</b>Flights, airport transfer, travel/ski insurance, towel, helmet unless confirmed, personal ski clothing and bar drinks. London–Geneva is currently from £68 return; the Val Thorens shared transfer is £94 return.</div>
+              </div>
+              <div class="ucpa-alts">
+                <div class="ucpa-alts-head"><h4>The two UCPA backups worth considering</h4><span>Same 10 Jan 2027 rate sheet · package only</span></div>
+                <div class="ucpa-alt-grid">
+                  <div class="ucpa-alt"><h5>La Plagne</h5><div class="alt-price">~£953–1,025<small>half-time · beginner</small></div><p><b>Best comfort and learner backup.</b> Recently renovated, ski-in/ski-out, long forgiving pistes—and every four-person or twin room is ensuite. The trade-off is paying ~£99–101 more than Val Thorens.</p><div class="alt-meta"><span>All rooms ensuite</span><span>Excellent beginners</span><span>3h30 Geneva transfer</span></div></div>
+                  <div class="ucpa-alt"><h5>Tignes</h5><div class="alt-price">~£846–916<small>half-time · beginner</small></div><p><b>Best snow and serious-skiing backup.</b> High Val Claret base, tranquil beginner zones and 300 km shared with Val d’Isère. It is slightly cheaper, but bathrooms are still shared between two rooms.</p><div class="alt-meta"><span>High + snow-sure</span><span>Mixed-ability terrain</span><span>Shared bathrooms</span></div></div>
+                </div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🎓</div><div><b>The read</b><span>Choose UCPA if the priority is rapid improvement and a sociable all-in lodge week. It recreates the rhythm of chalet life, but it is a large communal sports centre rather than a private catered chalet.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.ucpa.co.uk/resorts-in-france/snow/val-thorens/" target="_blank" rel="noopener">Val Thorens ↗</a> · <a href="https://www.ucpa.co.uk/resorts-in-france/snow/la-plagne/" target="_blank" rel="noopener">La Plagne ↗</a> · <a href="https://www.ucpa.co.uk/resorts-in-france/snow/tignes/" target="_blank" rel="noopener">Tignes ↗</a> · <a href="https://media.ucpa.com/image/upload/v1718182611/PRODUCTION-GRAPHIQUE/WEB/SITE-B2B/UCPA-Groupe-Adulte-Offres-Hiver-.pdf" target="_blank" rel="noopener">2027 rates ↗</a> · <a href="https://www.bensbus.co.uk/ski-transfer/geneva-val-thorens/" target="_blank" rel="noopener">transfer ↗</a></div><button class="btn pick-resort" data-pick="ucpa">This is my pick</button></div>
+            </div>
+          </article>
+
+          <article class="resort-slide" data-resort="stanton" aria-label="St Anton option">
+            <div class="resort-hero" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/St_Anton_From_Above_%28152128913%29.jpeg/1920px-St_Anton_From_Above_%28152128913%29.jpeg')">
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · big skiing · bigger après</span><h3>St Anton am Arlberg</h3><p>The most exciting option. Brilliant for confident skiers; workable for the rest of us with the right base and routes.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg/1920px-First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg" alt="Skiing in the Arlberg"><div class="route-ribbon"><span>London</span><i>✈</i><span>Zurich</span><i>🚆</i><b>St Anton</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/St_Anton_-_Galzig.jpg/1280px-St_Anton_-_Galzig.jpg" alt="Galzig slopes"></div><div class="story-shot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg/1280px-Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg" alt="Mooserwirt apres ski"></div></div>
+              </div>
+              <div class="rating-grid">
+                <div class="resort-rating easy"><div class="r-label">New skiers</div><div class="r-verdict">Needs a plan</div><div class="r-proof">43% easy terrain overall; use Lech and Zürs</div></div>
+                <div class="resort-rating cruise"><div class="r-label">Intermediates</div><div class="r-verdict">Huge variety</div><div class="r-proof">120 km of red terrain across the Arlberg</div></div>
+                <div class="resort-rating expert"><div class="r-label">Confident skiers</div><div class="r-verdict">Outstanding</div><div class="r-proof">50 km black + 200 km marked routes</div></div>
+                <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Excellent</div><div class="r-proof">Skiing reaches 2,811 m</div></div>
+                <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Iconic</div><div class="r-proof">Mooserwirt at 15:30 is the headline act</div></div>
+                <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Easiest</div><div class="r-proof">Direct Railjet · ~2h30 from Zürich HB</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Premium</div><div class="r-proof">~£2,500–2,720 pp full-trip estimate</div></div>
+                <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Nasserein</div><div class="r-proof">Quieter · nursery slopes · own gondola</div></div>
+              </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£2,500–2,720 includes · full trip</b><ul><li>Return flight + Zurich–St Anton trains</li><li>Seven-night catered chalet estimate</li><li>Six-day lift pass + ski and boot hire</li><li>Three half-day lessons, lunches, après and £100 buffer</li></ul></div>
+                <div class="cost-col out"><b>Not yet locked</b><ul><li>Live flight fare for eight seats</li><li>Exact whole-chalet quote and catering pattern</li><li>2026/27 lift-pass price + personal insurance</li></ul></div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🎿</div><div><b>The read</b><span>Choose St Anton if the group wants the most memorable ski week and accepts a little more planning for the early intermediates.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.skiarlberg.at/en/st-anton/winter/ski-region" target="_blank" rel="noopener">Official ski-area facts ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="stanton">This is my pick</button></div>
+            </div>
+          </article>
+
+          <article class="resort-slide" data-resort="laplagne" aria-label="La Plagne option">
+            <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/La%20Plagne%20Winter%20Panorama.jpg?width=1800')">
+              <div><span class="resort-rank">🇫🇷 16–23 Jan · easiest skiing · strongest value</span><h3>La Plagne · Paradiski</h3><p>The safest group choice: forgiving pistes, reliable snow and a catered package that keeps the price under control.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/La%20Plagne%20Winter%20Panorama.jpg?width=1800" alt="La Plagne winter panorama"><div class="route-ribbon"><span>London</span><i>✈</i><span>Geneva / Lyon</span><i>🚌</i><b>La Plagne</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/PLAGNE.jpg?width=1280" alt="La Plagne Centre in winter"></div><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2017.01.24.-12-Paradiski-La%20Plagne-L%27Arpette--L%27Arpette.jpg?width=1280" alt="Skiing at La Plagne"></div></div>
+              </div>
+              <div class="rating-grid">
+                <div class="resort-rating easy"><div class="r-label">New skiers</div><div class="r-verdict">Excellent</div><div class="r-proof">62% easy terrain · wide learning areas</div></div>
+                <div class="resort-rating cruise"><div class="r-label">Intermediates</div><div class="r-verdict">Easy progress</div><div class="r-proof">198 km easy + red terrain locally</div></div>
+                <div class="resort-rating expert"><div class="r-label">Confident skiers</div><div class="r-verdict">Plenty to do</div><div class="r-proof">27 km black + freeride and Les Arcs access</div></div>
+                <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Best here</div><div class="r-proof">70% above 2,000 m · top at 3,167 m</div></div>
+                <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Low-key</div><div class="r-proof">Easy drinks; less of an Austrian party scene</div></div>
+                <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Longest</div><div class="r-proof">~2.5–3.5h road transfer after flying</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Best package</div><div class="r-proof">~£1,150–1,350 pp travel + catered stay</div></div>
+                <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Plagne 1800</div><div class="r-proof">Chalets · ski-back · easy slope access</div></div>
+              </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£1,150–1,350 includes · travel + catered stay</b><ul><li>Return London–Lyon flight + resort transfer</li><li>Seven-night catered chalet</li><li>Breakfast, afternoon tea and six dinners with wine</li></ul></div>
+                <div class="cost-col out"><b>Still add for the full trip</b><ul><li>Lift pass, ski/board hire and lessons</li><li>Mountain lunches, après, insurance and spending</li><li>Exact 16 Jan quote for eight</li></ul></div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🏔️</div><div><b>The read</b><span>Choose La Plagne if confidence, snow and value matter more than village charm or a wild après scene.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://en.la-plagne.com/discover/our-opening-information" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.skibeat.co.uk/ski/france/la_plagne/plagne_1800/chalet_lupin_plagne1800" target="_blank" rel="noopener">package basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="laplagne">This is my pick</button></div>
+            </div>
+          </article>
+
+          <article class="resort-slide" data-resort="saalbach" aria-label="Saalbach option">
+            <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Saalbach%20hinterglemm.jpg?width=1800')">
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · the balanced Austrian option</span><h3>Saalbach-Hinterglemm</h3><p>Lots of approachable skiing, brilliant huts and enough après to feel properly Austrian without St Anton's sharper edges.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Saalbach%20hinterglemm.jpg?width=1800" alt="Saalbach Hinterglemm in winter"><div class="route-ribbon"><span>London</span><i>✈</i><span>Salzburg</span><i>🚐</i><b>Saalbach</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Kohlmaisbahn%20Saalbach-Hinterglemm.jpg?width=1280" alt="Kohlmaisbahn at Saalbach"></div><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Blue%20run%2011%2C%20Hinterglemm%20%288449222626%29%20%282%29.jpg?width=1280" alt="Blue ski run in Hinterglemm"></div></div>
+              </div>
+              <div class="rating-grid">
+                <div class="resort-rating easy"><div class="r-label">New skiers</div><div class="r-verdict">Very good</div><div class="r-proof">52% easy terrain · nursery areas in resort</div></div>
+                <div class="resort-rating cruise"><div class="r-label">Intermediates</div><div class="r-verdict">Excellent</div><div class="r-proof">112 km of red terrain + long circuits</div></div>
+                <div class="resort-rating expert"><div class="r-label">Confident skiers</div><div class="r-verdict">Good variety</div><div class="r-proof">18 km black + Fieberbrunn freeride</div></div>
+                <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Very good</div><div class="r-proof">90% snowmaking · top at 2,096 m</div></div>
+                <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Excellent</div><div class="r-proof">Slope-side bars across Saalbach and Hinterglemm</div></div>
+                <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Straightforward</div><div class="r-proof">~1.5h road transfer from Salzburg</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Strong</div><div class="r-proof">~£1,000–1,200 pp chalet + flight estimate</div></div>
+                <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Central Saalbach</div><div class="r-proof">Lifts, bars and chalet life on foot</div></div>
+              </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>£1,000–1,200 includes · estimated core</b><ul><li>Catered chalet room + self-booked London–Salzburg flight allowance</li><li>Breakfast and three-course dinners with drinks</li></ul></div>
+                <div class="cost-col out"><b>Still add or confirm</b><ul><li>Airport transfer—the current range is not a locked door-to-door total</li><li>Lift pass, hire, lessons, lunches, après and insurance</li><li>Dated room quote and eight-seat flight fare</li></ul></div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🍻</div><div><b>The read</b><span>Choose Saalbach for the best all-round compromise: friendly skiing, lively evenings and an Austrian village feel.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.saalbach.com/en/winter/ski-resort" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.skiline.co.uk/ski-holidays/austria/saalbach/chalet-alpensport" target="_blank" rel="noopener">chalet basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="saalbach">This is my pick</button></div>
+            </div>
+          </article>
+
+          <article class="resort-slide" data-resort="mayrhofen" aria-label="Mayrhofen option">
+            <div class="resort-hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Zillertal%2C%20Ski%20Resort%20Mayrhofen-Hippach%20%2813384906064%29.jpg?width=1800')">
+              <div><span class="resort-rank">🇦🇹 16–23 Jan · two mountains · one lively town</span><h3>Mayrhofen</h3><p>The neatest ability split: learn and cruise on Ahorn, then head to Penken when you want steeper, faster days.</p></div>
+            </div>
+            <div class="resort-body">
+              <div class="photo-story">
+                <div class="story-main"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Zillertal%2C%20Ski%20Resort%20Mayrhofen-Hippach%20%2813384906064%29.jpg?width=1800" alt="Mayrhofen ski area"><div class="route-ribbon"><span>London</span><i>✈</i><span>Innsbruck</span><i>🚐</i><b>Mayrhofen</b></div></div>
+                <div class="story-side"><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Mayrhofen%20%28126292092%29.jpg?width=1280" alt="Snowboarding in Mayrhofen"></div><div class="story-shot"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Mayrhofen%20Harakiri-Piste%201.jpg?width=1280" alt="Harakiri piste in Mayrhofen"></div></div>
+              </div>
+              <div class="rating-grid">
+                <div class="resort-rating easy"><div class="r-label">New skiers</div><div class="r-verdict">Excellent</div><div class="r-proof">44 km easy · dedicated Ahorn learning area</div></div>
+                <div class="resort-rating cruise"><div class="r-label">Intermediates</div><div class="r-verdict">Excellent</div><div class="r-proof">66 km red · wide carving pistes</div></div>
+                <div class="resort-rating expert"><div class="r-label">Confident skiers</div><div class="r-verdict">Very good</div><div class="r-proof">32 km black · Harakiri reaches 78%</div></div>
+                <div class="resort-rating snowy"><div class="r-label">Snow confidence</div><div class="r-verdict">Excellent</div><div class="r-proof">95% snowmaking · top at 2,500 m</div></div>
+                <div class="resort-rating party"><div class="r-label">Après</div><div class="r-verdict">Lively</div><div class="r-proof">A proper town with bars around the lifts</div></div>
+                <div class="resort-rating travel"><div class="r-label">Getting there</div><div class="r-verdict">Good</div><div class="r-proof">~1h road transfer from Innsbruck</div></div>
+                <div class="resort-rating value"><div class="r-label">Budget</div><div class="r-verdict">Depends how we stay</div><div class="r-proof">£486–677 pp apartment · £1,885 half-board</div></div>
+                <div class="resort-rating stay"><div class="r-label">Best base</div><div class="r-verdict">Central apartment</div><div class="r-proof">Self-catering keeps this option competitive</div></div>
+              </div>
+              <div class="cost-clarity">
+                <div class="cost-col in"><b>Two different price bases</b><ul><li><b>£486–677:</b> seven-night apartment only, divided by eight</li><li><b>From £1,885:</b> hotel package with flight, transfer, breakfast and dinner</li></ul></div>
+                <div class="cost-col out"><b>Still add</b><ul><li>Apartment route: flights, transfer, all food and every ski cost</li><li>Hotel route: lift pass, hire, lessons, lunches, après and insurance</li><li>Both need a fresh 16 Jan quote for eight</li></ul></div>
+              </div>
+              <div class="resort-take"><div class="take-icon">🏘️</div><div><b>The read</b><span>Choose Mayrhofen if the group values a real town and the clearest split between learners and confident skiers.</span></div></div>
+              <div class="slide-actions"><div class="sources"><a href="https://www.mayrhofen.at/en/stories/skiing-snowboarding" target="_blank" rel="noopener">ski-area facts ↗</a> · <a href="https://www.inghams.co.uk/ski-holidays/ski-resorts/austria/mayrhofen/hotel-berghof" target="_blank" rel="noopener">half-board basis ↗</a> · photo via Wikimedia Commons</div><button class="btn pick-resort" data-pick="mayrhofen">This is my pick</button></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="car-arrow" id="optionPrev" type="button" aria-label="Previous resort">←</button>
+        <div class="car-position" id="optionPosition">1 of 5</div>
+        <button class="car-arrow" id="optionNext" type="button" aria-label="Next resort">→</button>
+      </div>
+      <p class="compare-note">UCPA uses the published 10 January 2027 group-rate sheet converted at €1 = £0.8702. The 16–23 January figures now state exactly what is included; all remain planning ranges until availability for eight is confirmed.</p>
+    </div>
+  </section>
+
+  <div class="modetog hm-mode">
+    <div class="toggle" role="group" aria-label="App mode">
+      <button id="mdPlan" class="on">Planning</button>
+      <button id="mdTrip">Trip</button>
+    </div>
+  </div>
+
+  <div class="nextup hm-next">
+    <div>
+      <div class="nu-l" id="nuLabel">Next up</div>
+      <div class="nu-t" id="nuTitle">Confirm the week in the group chat</div>
+      <div class="nu-s" id="nuSub">Sat 16 – Sat 23 Jan 2027 · one message locks it</div>
+    </div>
+    <button class="btn" id="nuBtn" data-go="kit" data-sub="decisions">Open decisions →</button>
+  </div>
+
+  <section class="sect hm-board" aria-labelledby="planningBoardTitle">
+    <div class="planning-board">
+      <div class="pb-top">
+        <div>
+          <div class="pb-kicker">Planning stage · group alignment first</div>
+          <h2 class="pb-title" id="planningBoardTitle">The route from good idea to booked ski trip</h2>
+          <p class="pb-copy">Confirm the core group choices before booking flights and accommodation.</p>
+        </div>
+        <div class="pb-score" id="pbScore" style="--pb-progress:0%"><span><b id="pbScoreNum">0/6</b><small>decisions locked</small></span></div>
+      </div>
+      <div class="planning-route" id="planningRoute" aria-label="Planning journey"></div>
+      <div class="pb-actions">
+        <button class="btn" data-go="kit" data-sub="decisions">Open decision room →</button>
+        <button class="btn ghost" id="copyPlanningBrief">Copy group brief</button>
+        <span class="pb-local" id="pbLocalNote">Choices save on this device. Live group sync comes after the week and headcount are confirmed.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="quick hm-quick">
+    <button class="qa" data-go="days"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Days</button>
+    <button class="qa" data-go="ski"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5 9 7.5l4 5.5 3-4 5.5 8.5"/><path d="M9 7.5l1.5-2"/></svg>Mountain</button>
+    <button class="qa" data-go="places"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Places</button>
+    <button class="qa" data-go="kit" data-sub="bookings"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M13.5 6v2.6M13.5 11v2M13.5 15.4V18"/></svg>Bookings</button>
+    <button class="qa" data-help><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8.5v3.5M12 15.6v.1"/></svg>Help</button>
+  </div>
+
+  <!-- ---- the dream (pre-trip sell) ---- -->
+  <div class="sect hm-dream" id="dreamSell">
+    <div class="mini" style="color:var(--red);">Servus! · the dream · one week, one mountain range</div>
+    <div class="photogrid">
+      <div class="ph tall">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg/1920px-First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg" alt="Arlberg pistes in deep winter" loading="lazy" onerror="this.remove()">
+        <div class="cap">305 km of groomed Arlberg piste<small>gentle, sunny miles for the group — steeps for the show-offs</small></div>
+      </div>
+      <div class="ph">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/St_Anton_-_Galzig.jpg/1920px-St_Anton_-_Galzig.jpg" alt="Skiing above St Anton on Galzig" loading="lazy" onerror="this.remove()">
+        <div class="cap">Blue-sky cruising off Galzig<small>wide, confidence-building blues</small></div>
+      </div>
+      <div class="ph">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Skiroute_3_Galzig_-_panoramio.jpg/1920px-Skiroute_3_Galzig_-_panoramio.jpg" alt="Snow and sky above the Arlberg" loading="lazy" onerror="this.remove()">
+        <div class="cap">Powder above the clouds<small>January = cold, reliable snow</small></div>
+      </div>
+    </div>
+    <div class="statband">
+      <div class="stat"><div class="n">305 km</div><div class="l">piste</div></div>
+      <div class="stat"><div class="n">87</div><div class="l">lifts · 1 pass</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">nights catered</div></div>
+      <div class="stat"><div class="n">−10°C</div><div class="l">proper snow</div></div>
+      <div class="stat"><div class="n">15:30</div><div class="l">final countdown</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">of us</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:12px;">
+      <div class="card" style="border-top:3px solid var(--glacier);"><h3>🎿 Honest skiing for every level</h3><p>Learners get wide, sunny blues on the Lech side — by lift, never down anything scary. Lessons days 1–3.</p></div>
+      <div class="card" style="border-top:3px solid var(--amber);"><h3>🍻 The best après on the planet</h3><p>Mooserwirt, Krazy Kanguruh, Taps. Dancing in ski boots from 3:30pm, daily, all eight of us.</p></div>
+      <div class="card" style="border-top:3px solid var(--pine);"><h3>🏔️ Zero faff</h3><p>Fly Zurich, one direct train to the village. Chalet cooks for us. Everything here is already planned — you just say yes.</p></div>
+    </div>
+  </div>
+
+  <div class="sect hm-week">
+    <div class="mini">Your week · tap a card</div>
+    <div class="weekstrip" id="weekStrip"></div>
+  </div>
+
+  <div class="sect hm-live">
+    <div class="dash">
+      <div class="mini">Live mountain · check before first lift</div>
+      <div class="live">
+        <a href="https://www.skiarlberg.at/en/live-info/weather-snow" target="_blank" rel="noopener"><div class="lt">Weather + snow</div><div class="ls">Check live ↗</div></a>
+        <a href="https://www.skiarlberg.at/en/live-info/open-lifts-slopes" target="_blank" rel="noopener"><div class="lt">Lifts + pistes open</div><div class="ls">Check live ↗</div></a>
+        <a href="https://www.skiarlberg.at/en/live-info/webcams" target="_blank" rel="noopener"><div class="lt">Webcams</div><div class="ls">Check live ↗</div></a>
+        <a href="https://www.skiarlberg.at/en/live-info/map-navigation" target="_blank" rel="noopener"><div class="lt">Official piste map</div><div class="ls">Open ↗</div></a>
+      </div>
+      <div class="upd">Official Ski Arlberg sources · no stale data stored here — always live</div>
+    </div>
+  </div>
+
+  <div class="sect hm-ready">
+    <div class="mini">Trip readiness · taps through</div>
+    <div class="ready">
+      <div class="rd" data-go="kit" data-sub="bookings"><div class="rt">Bookings</div><div class="rn" id="rdBook">0/8</div><div class="progress"><div id="rdBookBar"></div></div></div>
+      <div class="rd" data-go="kit" data-sub="decisions"><div class="rt">Decisions</div><div class="rn" id="rdDec">0/6</div><div class="progress"><div id="rdDecBar"></div></div></div>
+      <div class="rd" data-go="kit" data-sub="packing"><div class="rt">Packing</div><div class="rn" id="rdPack">0/14</div><div class="progress"><div id="rdPackBar"></div></div></div>
+      <div class="rd" data-go="kit" data-sub="budget"><div class="rt">Paid (pp)</div><div class="rn" id="rdPaid">£0</div><div class="progress"><div id="rdPaidBar"></div></div></div>
+    </div>
+  </div>
+
+  <div class="sect hm-dec" id="openDecisions"></div>
+
+  <div class="sect hm-tonight">
+    <div class="tonight">
+      <img class="tbg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg/1920px-Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <div class="ti">🍻</div>
+      <div><h3>The daily ritual</h3><p><b>Mooserwirt, 15:30, every day.</b> The Final Countdown plays, 500 people in ski boots lose their minds, and we have a table. That's the trip.</p></div>
+    </div>
+  </div>
+
+  <div class="sect hm-cost">
+    <div class="costband">
+      <div><div class="cb-n">~£2,500 <span style="font-size:13px;font-weight:400;color:var(--muted);">per person, all-in</span></div>
+      <div class="cb-s">Flights, trains, 7 nights catered, 6-day pass, hire, lessons, lunches and a serious après budget. Mid-January = best value + coldest snow. Chalet choice is the biggest lever.</div></div>
+      <button class="btn navy" data-go="kit" data-sub="budget">See the numbers →</button>
+    </div>
+  </div>
+
+</div></div>
+<!-- ================= DAYS ================= -->
+<div class="view" id="v-days"><div class="wrap">
+  <h2>Days — first lifts to last orders</h2>
+  <p class="sub">Dots: <span style="color:var(--glacier);">●</span> ski · <span style="color:var(--amber);">●</span> après · <span style="color:var(--pine);">●</span> food · <span style="color:var(--navy);">●</span> travel · <span style="color:var(--red);">●</span> flex. Weather reshuffles days — that's the plan working, not failing.</p>
+  <div class="modebar">
+    <div class="daypick" id="dayPick" style="margin-bottom:0;flex:1;"></div>
+    <div class="toggle" role="group" aria-label="Detail level">
+      <button id="tgCompact">Compact</button>
+      <button id="tgDetail" class="on">Detail</button>
+    </div>
+  </div>
+  <div id="dayHost"></div>
+</div></div>
+
+<!-- ================= SKI ================= -->
+<div class="view" id="v-ski"><div class="wrap">
+  <h2>Ski — mountain operations</h2>
+  <p class="sub">One pass, whole Arlberg. Group skis the gentle <b>Lech–Zürs side</b> by lift; Jason gets the steeps; everyone reunites at 3pm.</p>
+
+  <div class="dash" style="margin-bottom:18px;">
+    <div class="mini">Live mountain dashboard</div>
+    <div class="live">
+      <a href="https://www.skiarlberg.at/en/live-info/weather-snow" target="_blank" rel="noopener"><div class="lt">Weather + snow</div><div class="ls">Check live ↗</div></a>
+      <a href="https://www.skiarlberg.at/en/live-info/open-lifts-slopes" target="_blank" rel="noopener"><div class="lt">Lifts open</div><div class="ls">Check live ↗</div></a>
+      <a href="https://www.skiarlberg.at/en/live-info/webcams" target="_blank" rel="noopener"><div class="lt">Webcams</div><div class="ls">Check live ↗</div></a>
+      <a href="https://www.skiarlberg.at/en/live-info/map-navigation" target="_blank" rel="noopener"><div class="lt">Official piste map</div><div class="ls">Open ↗</div></a>
+    </div>
+    <div class="upd">Check weather + lifts before first gondola, webcams before committing to Lech</div>
+  </div>
+
+  <div class="banner patrol">
+    <span class="ptag">Ski patrol notice</span>
+    <div class="no">⛔</div>
+    <div>
+      <h3>Group does not ski the home run.</h3>
+      <p>Download the Nasserein gondola instead, walk up to the après. <b>Jason skis it and holds the table.</b></p>
+      <details class="why"><summary>Why this rule exists</summary><p>The Steissbachtal home run is an icy, mogulled funnel by 3pm with the whole mountain on it. It ends more holidays than the off-piste does. Same party, zero tears.</p></details>
+    </div>
+  </div>
+
+  <div class="sect">
+    <div class="mini">The day, three ways</div>
+    <div class="grid g3">
+      <div class="card planabc"><h3>Plan A · normal day</h3><p>Split mornings — lessons / Jason's steeps. Reunite for mountain lunch or 3pm après. Lech–Zürs via Flexenbahn for the group.</p></div>
+      <div class="card planabc b"><h3>Plan B · flat light, wind, tired legs</h3><p>Stay low + tree-lined: Gampen and Nasserein blues, long lunch, early Sennhütte. Or half-day + spa.</p></div>
+      <div class="card planabc c"><h3>Plan C · no-ski fallback</h3><p>WellCom spa, village walk, swim, Valluga ride-up for the view (non-skiers can), cards at the chalet, big lunch out.</p></div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <div class="mini">Who skis what</div>
+    <div class="grid g3">
+      <div class="card" style="border-top:3px solid var(--glacier);">
+        <div style="margin-bottom:6px;"><span class="pd pblue">Blue runs only</span></div>
+        <div class="mini" style="color:#174a96;">The group · early intermediate</div>
+        <div class="chips" style="margin-bottom:8px;"><span class="chip blue">Nasserein blues</span><span class="chip blue">Gampen</span><span class="chip blue">blue 64</span><span class="chip blue">Rendl top</span><span class="chip blue">Zürs</span><span class="chip blue">Oberlech</span><span class="chip blue">Lech</span></div>
+        <p>Avoid: home run, Stuben, Valluga.</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--navy);">
+        <div style="margin-bottom:6px;"><span class="pd pblack">Black + off-piste</span></div>
+        <div class="mini">Jason · advanced</div>
+        <div class="chips" style="margin-bottom:8px;"><span class="chip">Valluga</span><span class="chip">Schindler Kar</span><span class="chip">Rendl freeride</span><span class="chip">Albona</span><span class="chip red">guide day</span></div>
+        <p>Valluga north face is guide-only by rule. Morning steeps, 3pm table duty.</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--pine);">
+        <div style="margin-bottom:6px;"><span class="pd pblue">Blue 64 + lifts</span></div>
+        <div class="mini" style="color:var(--pine);">Together</div>
+        <div class="chips" style="margin-bottom:8px;"><span class="chip green">blue 64 + lunch</span><span class="chip green">Rendl day</span><span class="chip green">Oberlech day</span><span class="chip amber">3pm après</span></div>
+        <p>Split mornings, reunite at lunch or après. Nobody compromises.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+      <div class="mini" style="margin:0;">The simplified safe-route map · north up, real geography</div>
+      <a class="btn ghost" style="min-height:34px;padding:7px 13px;font-size:12px;" href="https://www.skiarlberg.at/en/live-info/map-navigation" target="_blank" rel="noopener">Official piste map ↗</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 270px;gap:14px;" class="mapgrid">
+      <style>@media(max-width:880px){.mapgrid{grid-template-columns:1fr !important;}}</style>
+      <div class="card" style="padding:10px;">
+      <svg viewBox="0 0 820 600" width="100%" role="img" aria-label="Arlberg map with route from Lech to St Anton apres">
+        <rect x="0" y="0" width="820" height="600" fill="#f0f3ed" rx="12"/>
+        <ellipse cx="360" cy="215" rx="185" ry="165" fill="#1e62c9" opacity="0.08"/>
+        <ellipse cx="710" cy="380" rx="100" ry="85" fill="#1e62c9" opacity="0.08"/>
+        <ellipse cx="475" cy="435" rx="75" ry="48" fill="#1e62c9" opacity="0.08"/>
+        <ellipse cx="520" cy="300" rx="105" ry="62" fill="#1b2533" opacity="0.10"/>
+        <ellipse cx="300" cy="520" rx="80" ry="50" fill="#1b2533" opacity="0.10"/>
+        <ellipse cx="650" cy="550" rx="85" ry="40" fill="#1e62c9" opacity="0.08"/>
+        <path d="M820 472 L700 460 L610 455 L475 445 L375 450 L280 472 L150 492 L0 502" fill="none" stroke="#c3cdd8" stroke-width="5" stroke-linecap="round"/>
+        <path d="M375 450 L362 360 L352 300 L335 225 L342 140 L420 78 L520 50" fill="none" stroke="#c3cdd8" stroke-width="4" stroke-linecap="round"/>
+        <text x="745" y="448" font-size="10.5" fill="#90a0b3">Innsbruck →</text>
+        <text x="14" y="492" font-size="10.5" fill="#90a0b3">← Zurich</text>
+        <line x1="660" y1="455" x2="560" y2="395" stroke="#a7b3c0" stroke-width="2"/>
+        <line x1="560" y1="395" x2="525" y2="310" stroke="#a7b3c0" stroke-width="2"/>
+        <line x1="705" y1="440" x2="715" y2="372" stroke="#a7b3c0" stroke-width="2"/>
+        <line x1="675" y1="470" x2="652" y2="545" stroke="#a7b3c0" stroke-width="2"/>
+        <line x1="335" y1="195" x2="402" y2="150" stroke="#a7b3c0" stroke-width="2"/>
+        <path d="M340 215 Q370 255 362 300" fill="none" stroke="#0c7d5c" stroke-width="3.5" stroke-dasharray="8 6"/>
+        <path d="M368 315 L375 438" fill="none" stroke="#0c7d5c" stroke-width="5"/>
+        <path d="M385 445 L470 440 L555 397" fill="none" stroke="#0c7d5c" stroke-width="3.5" stroke-dasharray="8 6"/>
+        <path d="M565 400 Q620 415 655 442 L668 455" fill="none" stroke="#0c7d5c" stroke-width="3.5" stroke-dasharray="8 6"/>
+        <path d="M566 398 Q625 420 648 445" fill="none" stroke="#cf3f38" stroke-width="2" stroke-dasharray="4 4" opacity="0.85"/>
+        <path d="M510 295 l10 -17 l10 17 z" fill="#1b2533"/>
+        <text x="536" y="293" font-size="12.5" font-weight="700" fill="#1b2533" font-family="Inter,sans-serif">Valluga 2,811 m</text>
+        <text x="536" y="307" font-size="10.5" fill="#566578">Jason's terrain</text>
+        <g font-family="Inter,sans-serif">
+          <circle cx="662" cy="458" r="7" fill="#101c30"/>
+          <text x="600" y="482" font-size="13.5" font-weight="700" fill="#101c30">St Anton</text>
+          <text x="600" y="496" font-size="10.5" fill="#566578">nightlife · station</text>
+          <path d="M745 432 l8 -11 l8 11 v12 h-16 z" fill="#c97f10"/>
+          <rect x="749" y="438" width="8" height="6" fill="#fff"/>
+          <text x="700" y="416" font-size="13.5" font-weight="700" fill="#9a6008">Nasserein — chalet</text>
+          <text x="700" y="430" font-size="10.5" fill="#566578">own gondola · quiet end</text>
+          <circle cx="560" cy="395" r="5.5" fill="#1e62c9"/>
+          <text x="488" y="385" font-size="12.5" font-weight="700" fill="#101c30">Galzig</text>
+          <circle cx="475" cy="442" r="6" fill="#1e62c9"/>
+          <text x="442" y="468" font-size="12.5" font-weight="700" fill="#101c30">St Christoph</text>
+          <text x="442" y="482" font-size="10.5" fill="#566578">easy blue 64</text>
+          <circle cx="300" cy="510" r="6" fill="#1b2533"/>
+          <text x="240" y="535" font-size="12.5" font-weight="700" fill="#101c30">Stuben</text>
+          <text x="240" y="549" font-size="10.5" fill="#566578">steep — skip</text>
+          <circle cx="362" cy="305" r="6" fill="#1e62c9"/>
+          <text x="380" y="303" font-size="12.5" font-weight="700" fill="#101c30">Zürs</text>
+          <circle cx="335" cy="200" r="7" fill="#1e62c9"/>
+          <text x="228" y="185" font-size="13.5" font-weight="700" fill="#101c30">Lech</text>
+          <text x="180" y="200" font-size="10.5" fill="#566578">group's happy place</text>
+          <circle cx="405" cy="148" r="5.5" fill="#1e62c9"/>
+          <text x="418" y="146" font-size="12.5" font-weight="700" fill="#101c30">Oberlech</text>
+          <circle cx="520" cy="52" r="6" fill="#1e62c9"/>
+          <text x="534" y="50" font-size="12.5" font-weight="700" fill="#101c30">Warth</text>
+          <circle cx="650" cy="548" r="6" fill="#1e62c9"/>
+          <text x="664" y="546" font-size="12.5" font-weight="700" fill="#101c30">Rendl</text>
+          <circle cx="640" cy="430" r="5.5" fill="#c97f10"/>
+          <text x="548" y="428" font-size="12" font-weight="700" fill="#9a6008">Mooserwirt · KK</text>
+        </g>
+        <g font-family="Inter,sans-serif" font-size="13" font-weight="700">
+          <circle cx="340" cy="215" r="11" fill="#0c7d5c"/><text x="340" y="219.5" fill="#fff" text-anchor="middle">1</text>
+          <circle cx="366" cy="372" r="11" fill="#0c7d5c"/><text x="366" y="376.5" fill="#fff" text-anchor="middle">2</text>
+          <circle cx="470" cy="440" r="11" fill="#0c7d5c"/><text x="470" y="444.5" fill="#fff" text-anchor="middle">3</text>
+          <circle cx="610" cy="412" r="11" fill="#0c7d5c"/><text x="610" y="416.5" fill="#fff" text-anchor="middle">4</text>
+        </g>
+        <g transform="translate(770,44)"><line x1="0" y1="26" x2="0" y2="2" stroke="#101c30" stroke-width="2"/><path d="M-6 8 L0 -2 L6 8 z" fill="#101c30"/><text x="0" y="42" font-size="12" font-weight="700" fill="#101c30" text-anchor="middle" font-family="Inter,sans-serif">N</text></g>
+      </svg>
+      </div>
+      <div>
+        <div class="card route" style="margin-bottom:12px;">
+          <div class="mini">Route home · Lech → Mooserwirt · 60–90 min</div>
+          <div class="rstep"><div class="num">1</div><div><h4>Lech → Zürs</h4><p>gentle runs + lifts (or free ski bus)</p></div></div>
+          <div class="rstep"><div class="num">2</div><div><h4>Flexenbahn cable car</h4><p>sit down, ride across to Alpe Rauz</p></div></div>
+          <div class="rstep"><div class="num">3</div><div><h4>Blue 64 → St Christoph → Galzig lift</h4><p>wide and gentle, even on tired legs</p></div></div>
+          <div class="rstep"><div class="num">4</div><div><h4>Gondola down + 10-min walk up</h4><p>Jason skis the home run, holds the table</p></div></div>
+        </div>
+        <div class="card">
+          <div class="mini">Bail-out</div>
+          <p style="font-size:12.5px;color:var(--muted);">Bus Lech → St Anton, <b style="color:var(--ink);">~35–40 min</b>, free with pass. Use it if legs are gone or weather turns.</p>
+        </div>
+      </div>
+    </div>
+    <div class="maplegend">
+      <span><span class="gdot" style="background:var(--glacier);"></span>group zones</span>
+      <span><span class="gdot" style="background:var(--navy);"></span>Jason's terrain</span>
+      <span><span class="gdot" style="background:var(--amber);"></span>chalet + après</span>
+      <span><span style="border-top:3px solid var(--pine);width:22px;display:inline-block;"></span>route home</span>
+      <span><span style="border-top:2px dashed #cf3f38;width:22px;display:inline-block;"></span>home run — Jason only</span>
+    </div>
+  </div>
+
+  <div class="sect">
+    <div class="mini">Mountain services</div>
+    <div class="grid g3">
+      <div class="card"><h3>🎟️ Lift pass</h3>
+        <div class="kv"><span>6 days, whole Arlberg</span><span>€450 <span class="st conf">official</span></span></div>
+        <div class="kv"><span>Chipcard</span><span>+€5</span></div>
+        <div class="kv"><span>Buy</span><span>online pre-trip · ask chalet re delivery</span></div>
+      </div>
+      <div class="card"><h3>🎿 Hire + lessons</h3>
+        <div class="kv"><span>Hire</span><span>pre-book online ~15% off · Nasserein shop</span></div>
+        <div class="kv"><span>Fitting</span><span>Sat evening — beats Sunday queue</span></div>
+        <div class="kv"><span>Lessons meet</span><span>Nasserein nursery, 09:15, days 1–3</span></div>
+      </div>
+      <div class="card"><h3>🧭 Guide day + bus</h3>
+        <div class="kv"><span>Jason's guide day</span><span>Valluga / off-piste · book in resort</span></div>
+        <div class="kv"><span>Off-piste rule</span><span>guide-only, everyone</span></div>
+        <div class="kv"><span>Ski bus</span><span>free with pass, all-day loop</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <div class="card" style="border-left:4px solid var(--red);">
+      <div class="mini" style="color:var(--red-d);">On-mountain emergency</div>
+      <div class="grid g3">
+        <div class="kv" style="border:none;"><span>EU emergency</span><span><b>112</b></span></div>
+        <div class="kv" style="border:none;"><span>Mountain rescue</span><span><b>140</b></span></div>
+        <div class="kv" style="border:none;"><span>Meet point if split</span><span>Mooserwirt terrace, 15:00</span></div>
+      </div>
+      <p style="font-size:11.5px;color:var(--faint);margin-top:6px;">Chalet address goes in every phone + a paper copy in every jacket. Full details in ⛑ Help.</p>
+    </div>
+  </div>
+</div></div>
+<!-- ================= PLACES ================= -->
+<div class="view" id="v-places"><div class="wrap">
+  <h2>Places — the address book</h2>
+  <p class="sub">Walk-ins only, no restaurant bookings — that's the style. Filter by moment, tap <b>Map</b> for directions.</p>
+  <div class="modebar">
+    <div class="toggle" role="group" aria-label="Places view">
+      <button id="plList" class="on">List</button>
+      <button id="plMap">Village map</button>
+    </div>
+  </div>
+  <div id="placesList">
+    <div class="filters" id="placeFilters"></div>
+    <div class="pcards" id="placeCards"></div>
+  </div>
+  <div id="placesMap" style="display:none;">
+    <div class="card" style="padding:10px;margin-bottom:12px;">
+    <svg viewBox="0 0 1040 250" width="100%" role="img" aria-label="St Anton village west to east">
+      <rect x="0" y="0" width="1040" height="250" fill="#f0f3ed" rx="12"/>
+      <path d="M0 95 L120 55 L260 88 L400 42 L540 80 L660 50 L800 86 L930 60 L1040 82 L1040 0 L0 0 Z" fill="#e2e8de"/>
+      <path d="M0 196 L1040 188" fill="none" stroke="#c3cdd8" stroke-width="6"/>
+      <path d="M0 215 L1040 208" fill="none" stroke="#8e9aa8" stroke-width="2.5" stroke-dasharray="14 7"/>
+      <text x="14" y="237" font-size="10.5" fill="#90a0b3" font-family="Inter,sans-serif">rail · ← Zurich</text>
+      <text x="960" y="232" font-size="10.5" fill="#90a0b3" font-family="Inter,sans-serif">Innsbruck →</text>
+      <line x1="300" y1="186" x2="225" y2="60" stroke="#a7b3c0" stroke-width="2.5"/>
+      <text x="180" y="50" font-size="11" font-weight="600" fill="#566578" font-family="Inter,sans-serif">Galzigbahn ↑</text>
+      <line x1="845" y1="178" x2="905" y2="75" stroke="#a7b3c0" stroke-width="2.5"/>
+      <text x="836" y="64" font-size="11" font-weight="600" fill="#566578" font-family="Inter,sans-serif">Nassereinbahn ↑ (download OK)</text>
+      <circle cx="420" cy="120" r="7" fill="#c97f10"/>
+      <text x="352" y="103" font-size="12.5" font-weight="700" fill="#9a6008" font-family="Inter,sans-serif">Mooserwirt · KK — ski past or walk up 10–15 min</text>
+      <path d="M420 130 Q400 160 372 180" fill="none" stroke="#c97f10" stroke-width="2" stroke-dasharray="4 4"/>
+      <rect x="252" y="160" width="206" height="46" rx="10" fill="#101c30"/>
+      <text x="355" y="180" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" font-family="Inter,sans-serif">Town centre</text>
+      <text x="355" y="196" font-size="10.5" fill="#a8b8cf" text-anchor="middle" font-family="Inter,sans-serif">bars · restaurants · Galzigbahn</text>
+      <rect x="492" y="163" width="120" height="40" rx="10" fill="#ffffff" stroke="#d8d5cc"/>
+      <text x="552" y="181" font-size="12" font-weight="700" fill="#101c30" text-anchor="middle" font-family="Inter,sans-serif">Station</text>
+      <text x="552" y="196" font-size="10" fill="#566578" text-anchor="middle" font-family="Inter,sans-serif">5 min to centre</text>
+      <rect x="742" y="156" width="218" height="50" rx="10" fill="#c97f10"/>
+      <text x="851" y="175" font-size="13" font-weight="700" fill="#fff" text-anchor="middle" font-family="Inter,sans-serif">⌂ Nasserein — our chalet</text>
+      <text x="851" y="192" font-size="10.5" fill="#fbeed3" text-anchor="middle" font-family="Inter,sans-serif">nursery slopes · lessons meet · quiet</text>
+      <path d="M616 183 L738 181" stroke="#566578" stroke-width="1.5"/>
+      <text x="677" y="172" font-size="10.5" font-weight="600" fill="#566578" text-anchor="middle" font-family="Inter,sans-serif">~12 min walk / free bus</text>
+      <text x="1005" y="40" font-size="12" font-weight="700" fill="#101c30" text-anchor="middle" font-family="Inter,sans-serif">N ↑</text>
+    </svg>
+    </div>
+    <div class="grid g4">
+      <div class="card" style="border-top:3px solid var(--pine);"><h3>Nasserein ✓</h3><p>Quiet, own gondola, nursery slopes. <b style="color:var(--pine);">Our end.</b></p></div>
+      <div class="card"><h3>Town centre</h3><p>Doorstep nightlife; priciest, worst lift queues.</p></div>
+      <div class="card"><h3>Oberdorf</h3><p>Good chalets; steep walk home gets old.</p></div>
+      <div class="card"><h3>Lech / Oberlech</h3><p>Best group skiing, wrong nightlife. Day-trip only.</p></div>
+    </div>
+  </div>
+  <div class="sect">
+    <div class="mini">Local knowledge · Tirol edition</div>
+    <div class="grid g3">
+      <div class="card"><div class="mini">Money</div>
+        <div class="kv"><span>Cards</span><span>fine in town</span></div>
+        <div class="kv"><span>Cash</span><span>~€50 for huts + toboggan night</span></div>
+        <div class="kv"><span>Tipping</span><span>round up / 5–10%, say it aloud</span></div>
+        <div class="kv"><span>Tap water</span><span>drinkable — “Leitungswasser”</span></div>
+      </div>
+      <div class="card"><div class="mini">German that lands</div>
+        <div class="kv"><span>Hello (Tirol)</span><span>Grüß Gott</span></div>
+        <div class="kv"><span>Two beers please</span><span>Zwei Bier, bitte</span></div>
+        <div class="kv"><span>The bill</span><span>Die Rechnung, bitte</span></div>
+        <div class="kv"><span>Cheers</span><span>Prost! (eye contact)</span></div>
+      </div>
+      <div class="card"><div class="mini">Photos + orders</div>
+        <div class="kv"><span>The big one</span><span>Valluga platform (lift up, no skis needed)</span></div>
+        <div class="kv"><span>Golden hour</span><span>Mooserwirt terrace, obviously</span></div>
+        <div class="kv"><span>Must order</span><span>Kaiserschmarrn · Gröstl · Jagertee (careful)</span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ================= TRIP KIT ================= -->
+<div class="view" id="v-kit"><div class="wrap">
+  <h2>Trip kit — the back office</h2>
+  <div class="subnav" id="kitNav"></div>
+
+  <!-- bookings -->
+  <div class="kview" id="k-bookings">
+    <p class="sub"><b id="bookSummary">0 of 8 locked in.</b> Status saves to this browser. Order matters — chalet first, everything else follows.</p>
+    <div class="grid g2" id="bookCards"></div>
+  </div>
+
+  <!-- budget -->
+  <div class="kview" id="k-budget">
+    <p class="sub">Per person, mid-January. <b>Edit amounts</b> — totals recalc and save. <span class="st conf">official</span> = Ski Arlberg 2025/26 tariff; the rest are estimates.</p>
+    <div class="card">
+      <div class="hc"><b style="color:var(--ink)">Travellers:</b> <input type="number" id="headcount" value="8" min="1" max="20"><span>· tick when paid</span></div>
+      <div class="budgetrow bhead"><span>Item</span><span>£ pp</span><span style="text-align:right;">Group</span><span>Paid</span></div>
+      <div class="budgetrow"><span>Lift pass, 6 days <span class="st conf">official</span><span class="cat">€450 ≈ £385 · 2025/26 tariff</span></span><input type="number" value="385" data-b="b1"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b1"></span></div>
+      <div class="budgetrow"><span>Catered chalet, 7 nights <span class="st draft">estimate</span><span class="cat">Jan whole-chalet ÷ 8 · biggest lever</span></span><input type="number" value="1250" data-b="b2"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b2"></span></div>
+      <div class="budgetrow"><span>Flights LON ⇄ ZRH <span class="st draft">estimate</span><span class="cat">Sat peak, book early</span></span><input type="number" value="130" data-b="b3"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b3"></span></div>
+      <div class="budgetrow"><span>Trains ZRH ⇄ St Anton <span class="st draft">estimate</span><span class="cat">Railjet, from €21 booked ahead</span></span><input type="number" value="55" data-b="b4"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b4"></span></div>
+      <div class="budgetrow"><span>Ski + boot hire, 6 days <span class="st draft">estimate</span><span class="cat">online pre-book ~15% off</span></span><input type="number" value="175" data-b="b5"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b5"></span></div>
+      <div class="budgetrow"><span>Lessons, 3 half-days <span class="st draft">estimate</span><span class="cat">0 for non-learners</span></span><input type="number" value="225" data-b="b6"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b6"></span></div>
+      <div class="budgetrow"><span>Lunches + après <span class="st draft">estimate</span><span class="cat">€20–30 lunch · ~€7.90 pint</span></span><input type="number" value="400" data-b="b7"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b7"></span></div>
+      <div class="budgetrow"><span>Buffer<span class="cat">taxis · breakages · one big round</span></span><input type="number" value="100" data-b="b8"><span class="gtotal" style="text-align:right;color:var(--muted);"></span><span class="paid"><input type="checkbox" data-store="paid-b8"></span></div>
+      <div class="totals">
+        <div><div class="n" id="tpp">£0</div><div class="l">per person</div></div>
+        <div><div class="n" id="tgrp">£0</div><div class="l">group total</div></div>
+        <div><div class="n" id="tpaid">£0</div><div class="l">paid so far (pp)</div></div>
+        <div><div class="n" id="tleft">£0</div><div class="l">left to pay (pp)</div></div>
+      </div>
+      <details class="why" style="margin-top:10px;"><summary>How this estimate works</summary><p>Mid-Jan pricing at 8 heads. Jan whole-chalet for 8–10 ≈ £1,000–1,400pp catered; New Year/half-term +30–50%. Pass is the official 2025/26 tariff — 2026/27 may rise slightly. Target ~£2,500pp; defaults total ~£2,720 — the chalet is the lever.</p></details>
+    </div>
+  </div>
+
+  <!-- packing -->
+  <div class="kview" id="k-packing">
+    <p class="sub">Skis, boots, poles, helmet = <b>hired in resort</b>. Everything else fits a cabin backpack. Ticks save.</p>
+    <div class="grid g2">
+      <div class="card">
+        <div class="mini">Ski wear</div>
+        <div class="check"><input type="checkbox" id="p1" data-store="pack-1"><label for="p1">Jacket + ski trousers <small>wear the jacket on the flight</small></label></div>
+        <div class="check"><input type="checkbox" id="p2" data-store="pack-2"><label for="p2">Base layers × 2–3 <small>merino: 3 days per wash</small></label></div>
+        <div class="check"><input type="checkbox" id="p3" data-store="pack-3"><label for="p3">Mid layers × 2</label></div>
+        <div class="check"><input type="checkbox" id="p4" data-store="pack-4"><label for="p4">Ski socks × 3 <small>never cotton</small></label></div>
+        <div class="check"><input type="checkbox" id="p5" data-store="pack-5"><label for="p5">Gloves + liners</label></div>
+        <div class="check"><input type="checkbox" id="p6" data-store="pack-6"><label for="p6">Goggles + sunglasses</label></div>
+        <div class="check"><input type="checkbox" id="p7" data-store="pack-7"><label for="p7">Buff + beanie</label></div>
+        <div class="progress"><div data-bar="pack-a"></div></div>
+      </div>
+      <div class="card">
+        <div class="mini">Everything else</div>
+        <div class="check"><input type="checkbox" id="p8" data-store="pack-8"><label for="p8">Evening clothes × 2–3 <small>après = ski boots casual; town = jeans fine</small></label></div>
+        <div class="check"><input type="checkbox" id="p9" data-store="pack-9"><label for="p9">Grippy trainers/boots <small>paths ice over at night</small></label></div>
+        <div class="check"><input type="checkbox" id="p10" data-store="pack-10"><label for="p10">Swimwear <small>spa + hot tub</small></label></div>
+        <div class="check"><input type="checkbox" id="p11" data-store="pack-11"><label for="p11">SPF 50 + lip balm</label></div>
+        <div class="check"><input type="checkbox" id="p12" data-store="pack-12"><label for="p12">Ibuprofen · plasters · blister tape · rehydration salts</label></div>
+        <div class="check"><input type="checkbox" id="p13" data-store="pack-13"><label for="p13">EU adapter + power bank <small>cold kills phones</small></label></div>
+        <div class="check"><input type="checkbox" id="p14" data-store="pack-14"><label for="p14">Passport + GHIC + travel card</label></div>
+        <div class="progress"><div data-bar="pack-b"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- documents -->
+  <div class="kview" id="k-documents">
+    <p class="sub">A wallet, not a vault — refs and reminders only, no scans. <b>Copy</b> puts the text on your clipboard.</p>
+    <div class="grid g2 wallet">
+      <div class="card"><h3>🛂 Passport</h3>
+        <div class="kv"><span>Rule</span><span>&lt;10 yrs old · +3 months validity</span></div>
+        <div class="kv"><span>Visa</span><span>none — ≤90 days Schengen</span></div>
+      </div>
+      <div class="card"><h3>🏥 GHIC + insurance</h3>
+        <div class="kv"><span>GHIC</span><span>carry it — free via NHS site</span></div>
+        <div class="kv"><span>Others' insurance</span><span>winter sports + off-piste-with-guide cover</span></div>
+      </div>
+      <div class="card"><h3>✈️ Flights</h3>
+        <div class="kv"><span>Out ref</span><span><input class="bref" data-ref="flight-out" placeholder="ref ____" style="margin:0;max-width:130px;"></span></div>
+        <div class="kv"><span>Back ref</span><span><input class="bref" data-ref="flight-back" placeholder="ref ____" style="margin:0;max-width:130px;"></span></div>
+      </div>
+      <div class="card"><h3>🚆 Trains</h3>
+        <div class="kv"><span>Out</span><span><input class="bref" data-ref="train-out" placeholder="dep ____ · ref ____" style="margin:0;max-width:170px;"></span></div>
+        <div class="kv"><span>Back</span><span><input class="bref" data-ref="train-back" placeholder="dep ____ · ref ____" style="margin:0;max-width:170px;"></span></div>
+      </div>
+      <div class="card"><h3>🏠 Chalet</h3>
+        <div class="kv"><span>Address</span><span><input class="bref" data-ref="chalet-addr" placeholder="____ (paper copy in every jacket)" style="margin:0;max-width:200px;"> <button class="copy" data-copy="chalet-addr">Copy</button></span></div>
+        <div class="kv"><span>Host</span><span><input class="bref" data-ref="chalet-host" placeholder="name + phone ____" style="margin:0;max-width:170px;"></span></div>
+      </div>
+      <div class="card"><h3>🆘 Emergency contacts</h3>
+        <div class="kv"><span>EU emergency</span><span>112</span></div>
+        <div class="kv"><span>Mountain rescue</span><span>140</span></div>
+        <div class="kv"><span>UK consulate Vienna</span><span>+43 1 716130</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- decisions -->
+  <div class="kview" id="k-decisions">
+    <p class="sub">Settle these in the group chat. <b>Recommended option highlighted.</b> Tick when decided.</p>
+    <div class="grid g2" id="decCards"></div>
+  </div>
+
+  <!-- notes -->
+  <div class="kview" id="k-notes">
+    <p class="sub">Shared notes go in the chat too — this saves to <b>this browser only</b>.</p>
+    <div class="grid g2">
+      <div class="card"><div class="mini">Trip notes · to raise with the group</div><textarea class="notes" id="notesShared" placeholder="– toboggan night: confirm Tue/Thu locally&#10;– who's in for lessons?&#10;– "></textarea></div>
+      <div class="card"><div class="mini">My notes · private to this device</div><textarea class="notes" id="notesPrivate" placeholder="– "></textarea></div>
+    </div>
+    <button class="reset" id="resetBtn">Reset all personal state on this device (ticks, statuses, notes, edits)</button>
+  </div>
+
+</div></div>
+
+<!-- ================= HELP DRAWER ================= -->
+<div class="drawer" id="helpDrawer" role="dialog" aria-label="Help and emergency">
+  <div class="dim" data-help-close></div>
+  <div class="panel">
+    <button class="closex" data-help-close aria-label="Close">✕</button>
+    <h2 style="font-family:'Fraunces',serif;">⛑ Help</h2>
+    <p class="sub" style="margin-bottom:14px;">Same place, every screen. Big numbers first.</p>
+    <div class="emnum"><span>EU emergency · ambulance, police</span><b>112</b></div>
+    <div class="emnum"><span>Alpine + mountain rescue</span><b>140</b></div>
+    <div class="mini" style="margin-top:16px;">If someone's hurt on the mountain</div>
+    <p style="font-size:13px;color:var(--muted);">Cross skis uphill of them, call 140, give piste name + nearest lift. Pass and insurance details in Trip kit → Documents.</p>
+    <div class="mini" style="margin-top:16px;">If you're lost / separated</div>
+    <p style="font-size:13px;color:var(--muted);">Default meet: <b style="color:var(--ink);">Mooserwirt terrace, 15:00.</b> Phone dead? Ask any lift staff to call the chalet — address on the paper card in your jacket.</p>
+    <div class="mini" style="margin-top:16px;">Getting home from Lech without skiing</div>
+    <p style="font-size:13px;color:var(--muted);">Free ski bus Lech → St Anton, ~35–40 min, runs all afternoon.</p>
+    <div class="mini" style="margin-top:16px;">Chalet</div>
+    <p style="font-size:13px;color:var(--muted);" id="helpChalet">Address not set yet — add it in Trip kit → Documents once booked.</p>
+    <div class="mini" style="margin-top:16px;">Live mountain info</div>
+    <p style="font-size:13px;"><a href="https://www.skiarlberg.at/en/live-info/weather-snow" target="_blank" rel="noopener" style="color:var(--glacier);font-weight:600;">Weather + snow ↗</a> · <a href="https://www.skiarlberg.at/en/live-info/open-lifts-slopes" target="_blank" rel="noopener" style="color:var(--glacier);font-weight:600;">Lifts ↗</a> · <a href="https://www.skiarlberg.at/en/live-info/webcams" target="_blank" rel="noopener" style="color:var(--glacier);font-weight:600;">Webcams ↗</a></p>
+  </div>
+</div>
+
+<!-- ================= DOCK (mobile) ================= -->
+<nav class="dock" aria-label="Quick navigation">
+  <button data-go="home" class="on"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5 9 7.5l4 5.5 3-4 5.5 8.5"/><path d="M9 7.5l1.5-2"/></svg>Options</button>
+  <button data-go="days"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>St Anton</button>
+  <button data-go="ski"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h20"/><path d="M11 6v3"/><rect x="7" y="9" width="8" height="7" rx="2"/><path d="M9.5 12.5h3"/></svg>Mountain</button>
+  <button data-go="places"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Places</button>
+  <button data-go="kit"><svg class="svgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M13.5 6v2.6M13.5 11v2M13.5 15.4V18"/></svg>Kit</button>
+</nav>
+
+<footer><div class="wrap">
+  Ski Week ’27 options · resort facts linked to official ski-area sources · budget figures are planning estimates · preferences save to this browser only.
+  <details style="margin-top:6px;"><summary style="cursor:pointer;">Photo credits — Wikimedia Commons</summary>
+  <a href="https://commons.wikimedia.org/wiki/File:Val-thorens-panorama.jpg" target="_blank" rel="noopener">Val Thorens panorama</a> © Henrik, CC BY-SA 3.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Jonction_des_pistes_de_ski_%C3%A0_Val_Thorens_(hiver_2019).JPG" target="_blank" rel="noopener">Val Thorens pistes</a> © Florian Pépellin, CC BY-SA 4.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Ski_%C3%A0_Val_Thorens_(2016).JPG" target="_blank" rel="noopener">Skiing at Val Thorens</a> © Florian Pépellin, CC BY-SA 3.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=73722795" target="_blank" rel="noopener">St Anton from above</a> © Thomas K, CC BY 3.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=71467202" target="_blank" rel="noopener">Arlberg pistes</a> © Erich Fend, CC0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=5667767" target="_blank" rel="noopener">Galzig</a> © Giggy, CC BY-SA 3.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=56223681" target="_blank" rel="noopener">Skiroute 3</a> © qwesy qwesy, CC BY 3.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg" target="_blank" rel="noopener">Mooserwirt</a> © qwesy qwesy, CC BY 3.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=115399110" target="_blank" rel="noopener">Nasserein</a> © Thomas Dahlstrøm Nielsen, CC BY-SA 4.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=115401668" target="_blank" rel="noopener">Galzigbahn</a> © Thomas Dahlstrøm Nielsen, CC BY-SA 4.0 ·
+  <a href="https://commons.wikimedia.org/w/index.php?curid=61622681" target="_blank" rel="noopener">Galzig gondola</a> © Keimzelle, CC BY-SA 4.0 ·
+  <a href="https://commons.wikimedia.org/wiki/File:Sanktantonamarlberg.jpg" target="_blank" rel="noopener">Village panorama</a> © Boskoyevsky, CC BY 2.0 BE
+  </details>
+</div></footer>
+<script>
+(function(){
+  /* ---------- persistence (keys shared with v1 planner) ---------- */
+  var LS=null; try{LS=window.localStorage;}catch(e){}
+  function get(k){try{return LS?LS.getItem('stanton27-'+k):null;}catch(e){return null;}}
+  function set(k,v){try{if(LS)LS.setItem('stanton27-'+k,v);}catch(e){}}
+
+  /* ---------- resort options carousel ---------- */
+  var resortNames={ucpa:'UCPA · Val Thorens',stanton:'St Anton',laplagne:'La Plagne',saalbach:'Saalbach',mayrhofen:'Mayrhofen'};
+  var resortDates={ucpa:'9–16 Jan',stanton:'16–23 Jan',laplagne:'16–23 Jan',saalbach:'16–23 Jan',mayrhofen:'16–23 Jan'};
+  var optionTrack=document.getElementById('optionTrack');
+  var optionSlides=optionTrack?Array.prototype.slice.call(optionTrack.querySelectorAll('.resort-slide')):[];
+  var optionIndex=0,optionTouchX=null;
+  var optionDots=document.getElementById('optionDots');
+  var optionPosition=document.getElementById('optionPosition');
+  var optionPrev=document.getElementById('optionPrev'),optionNext=document.getElementById('optionNext');
+  var resortChoiceLabel=document.getElementById('resortChoiceLabel');
+  if(optionDots)optionSlides.forEach(function(slide,i){
+    var b=document.createElement('button');b.type='button';b.className='car-dot';b.innerHTML='<span>'+resortNames[slide.dataset.resort]+'</span><small>'+resortDates[slide.dataset.resort]+'</small>';b.setAttribute('aria-label','Show '+resortNames[slide.dataset.resort]+', '+resortDates[slide.dataset.resort]);
+    b.addEventListener('click',function(){optionIndex=i;renderOptionCarousel();});optionDots.appendChild(b);
+  });
+  function renderOptionCarousel(){
+    if(!optionTrack)return;
+    optionTrack.style.transform='translateX(-'+(optionIndex*100)+'%)';
+    if(optionDots)optionDots.querySelectorAll('.car-dot').forEach(function(d,i){d.classList.toggle('on',i===optionIndex);d.setAttribute('aria-current',i===optionIndex?'true':'false');});
+    if(optionPosition)optionPosition.textContent=(optionIndex+1)+' of '+optionSlides.length;
+    if(optionPrev)optionPrev.disabled=optionIndex===0;if(optionNext)optionNext.disabled=optionIndex===optionSlides.length-1;
+    var saved=get('resort-choice');
+    if(resortChoiceLabel)resortChoiceLabel.textContent=saved&&resortNames[saved]?resortNames[saved]:'No pick yet';
+    document.querySelectorAll('.pick-resort').forEach(function(b){var on=b.dataset.pick===saved;b.classList.toggle('selected',on);b.textContent=on?'My pick':'This is my pick';});
+  }
+  if(optionPrev)optionPrev.addEventListener('click',function(){if(optionIndex>0){optionIndex--;renderOptionCarousel();}});
+  if(optionNext)optionNext.addEventListener('click',function(){if(optionIndex<optionSlides.length-1){optionIndex++;renderOptionCarousel();}});
+  document.querySelectorAll('.pick-resort').forEach(function(b){b.addEventListener('click',function(){set('resort-choice',b.dataset.pick);if(navigator.vibrate)navigator.vibrate(20);renderOptionCarousel();});});
+  var optionCarousel=document.getElementById('optionCarousel');
+  if(optionCarousel){
+    optionCarousel.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'&&optionIndex>0){optionIndex--;renderOptionCarousel();}if(e.key==='ArrowRight'&&optionIndex<optionSlides.length-1){optionIndex++;renderOptionCarousel();}});
+    optionCarousel.addEventListener('touchstart',function(e){optionTouchX=e.changedTouches[0].clientX;},{passive:true});
+    optionCarousel.addEventListener('touchend',function(e){if(optionTouchX===null)return;var dx=e.changedTouches[0].clientX-optionTouchX;if(Math.abs(dx)>55){if(dx<0&&optionIndex<optionSlides.length-1)optionIndex++;if(dx>0&&optionIndex>0)optionIndex--;renderOptionCarousel();}optionTouchX=null;},{passive:true});
+  }
+  renderOptionCarousel();
+
+  /* ---------- canonical trip object ---------- */
+  var TRIP={
+    start:new Date(2027,0,16), end:new Date(2027,0,23),
+    days:[
+      {dw:'Sat',dn:16,name:'Travel day',tag:'London → St Anton',tagc:'',meet:'Chalet check-in ~15:00 · Nasserein',blocks:[
+        {t:'am',ic:'✈️',cat:'travel',who:'a',st:'draft',tx:'<b>LON → ZRH</b>, early Saturday flight (~1h45)',note:'Backpacks only. All 8 on the same flight — one person books.'},
+        {t:'midday',ic:'🚆',cat:'travel',who:'a',st:'draft',tx:'ZRH → Zurich HB (10 min) → <b>direct Railjet to St Anton</b> (~2h30)',note:'Reserve 8 seats together on ÖBB/SBB. From €21 booked ahead.'},
+        {t:'~15:00',ic:'🏠',cat:'travel',who:'a',st:'draft',tx:'<b>Chalet check-in</b> + ski hire fitting in Nasserein',note:'Saturday fitting beats the Sunday-morning queue.'},
+        {t:'eve',ic:'🍽️',cat:'food',who:'a',st:'flexs',tx:'Chalet dinner → first look at town: Bar Cuba / Piccadilly',note:'Early-ish night. Big week ahead.'}]},
+      {dw:'Sun',dn:17,name:'Find feet',tag:'Nasserein & Gampen',tagc:'blue',meet:'Lessons meet 09:15 · Nasserein nursery slopes',blocks:[
+        {t:'09:30',ic:'🎓',cat:'ski',who:'g',st:'book',tx:'<b>Lesson 1 of 3</b>, nursery slopes',note:'Jason: Rendl recon while the group learns.'},
+        {t:'13:30',ic:'🎿',cat:'ski',who:'a',st:'draft',tx:'Wide Gampen blues together — repeat what the lesson taught',note:''},
+        {t:'15:00',ic:'🍻',cat:'apres',who:'a',st:'draft',tx:'Gondola down → gentle first après at <b>Sennhütte</b>',note:'Save Mooserwirt for Tuesday — pace the week.'},
+        {t:'eve',ic:'🍽️',cat:'food',who:'a',st:'draft',tx:'Chalet dinner · legs assessment',note:''}]},
+      {dw:'Mon',dn:18,name:'The classic',tag:'blue 64 → St Christoph',tagc:'blue',meet:'Meet 12:30 · top of Galzig',blocks:[
+        {t:'09:30',ic:'🎓',cat:'ski',who:'g',st:'book',tx:'<b>Lesson 2</b>',note:'Jason: Schindler Kar laps.'},
+        {t:'12:30',ic:'🍽️',cat:'food',who:'a',st:'draft',tx:'Meet at Galzig → ski <b>blue 64</b> → long lunch in St Christoph',note:'Hospiz Alm if feeling fancy. The valley-view run of the trip.'},
+        {t:'15:00',ic:'🍻',cat:'apres',who:'a',st:'draft',tx:'<b>Krazy Kanguruh</b> — rebuilt 2025, glass roof',note:'Group downloads the gondola first. Jason skis down.'},
+        {t:'19:30',ic:'🍽️',cat:'food',who:'a',st:'flexs',tx:'Town dinner, walk-in: Bodega / Fuhrmannstube',note:'No bookings — that’s the style.'}]},
+      {dw:'Tue',dn:19,name:'The big one',tag:'Zürs + Lech day trip',tagc:'blue',meet:'Leave Lech 14:30 latest — allow 90 min home',blocks:[
+        {t:'09:00',ic:'🚠',cat:'ski',who:'a',st:'draft',tx:'Galzig → <b>Flexenbahn</b> → warm up on Zürs blues',note:'The famous link. Sit-down cable car — no scary skiing to get there.'},
+        {t:'11:30',ic:'🎿',cat:'food',who:'a',st:'draft',tx:'<b>Oberlech cruising</b> + sun-terrace lunch',note:'Jason laps variants while the group cruises.'},
+        {t:'14:30',ic:'↩️',cat:'travel',who:'a',st:'conf',tx:'<b>Route home steps 1–4</b> (see Ski tab)',note:'Bail-out: free bus Lech → St Anton, 35–40 min.'},
+        {t:'15:30',ic:'🍻',cat:'apres',who:'a',st:'draft',tx:'<b>Mooserwirt</b> — in time for the Final Countdown',note:'Group downloads. Jason holds the table. Boots on tables.'}]},
+      {dw:'Wed',dn:20,name:'Legs decide',tag:'flex day',tagc:'red',meet:'Regroup 15:00 · chalet or Sennhütte',blocks:[
+        {t:'am',ic:'🎿',cat:'flex',who:'g',st:'flexs',tx:'Lech again <i>or</i> spa + village morning',note:'Can split — skiers ski, resters rest. Decision card in Trip kit.'},
+        {t:'am',ic:'🏔️',cat:'ski',who:'j',st:'book',tx:'<b>Guided off-piste day</b> — Valluga',note:'Guide-only by rule. Anyone joining needs off-piste insurance cover.'},
+        {t:'19:00',ic:'🛷',cat:'food',who:'a',st:'book',tx:'<b>Night toboggan from Gampen</b> + Rodelalm dinner',note:'Runs Tue/Thu — confirm locally, swap nights if needed. ~€50 cash.'}]},
+      {dw:'Thu',dn:21,name:'Rendl day',tag:'one mountain, everyone',tagc:'green',meet:'Rendlbahn base 09:30',blocks:[
+        {t:'09:30',ic:'🎿',cat:'ski',who:'a',st:'draft',tx:'Rendlbahn up — mellow top blues',note:'Jason: freeride lines between laps.'},
+        {t:'12:30',ic:'🏖️',cat:'food',who:'a',st:'draft',tx:'<b>Rendl Beach</b> lunch — deckchairs + music at 2,000 m',note:''},
+        {t:'15:30',ic:'🍻',cat:'apres',who:'a',st:'draft',tx:'Easy après — saving petrol for Friday',note:''},
+        {t:'eve',ic:'🃏',cat:'food',who:'a',st:'draft',tx:'Recovery night: casual dinner, cards at the chalet',note:''}]},
+      {dw:'Fri',dn:22,name:'The send',tag:'full après finish',tagc:'amber',meet:'KK terrace 15:00 — nobody is late',blocks:[
+        {t:'am',ic:'🎿',cat:'ski',who:'a',st:'draft',tx:'Everyone’s favourite runs, close to home',note:'Keep legs for the evening.'},
+        {t:'15:00',ic:'🍻',cat:'apres',who:'a',st:'conf',tx:'<b>KK → Taps → Mooserwirt crawl</b> · Final Countdown 15:30',note:'Ski boots on tables. This is what we came for.'},
+        {t:'20:00',ic:'🍽️',cat:'food',who:'a',st:'draft',tx:'Walk down (not ski) → big group dinner → last night out',note:''}]},
+      {dw:'Sat',dn:23,name:'Depart',tag:'no hungover skiing',tagc:'',meet:'Leave St Anton ~4.5h before the return flight',blocks:[
+        {t:'am',ic:'🏠',cat:'travel',who:'a',st:'draft',tx:'Lazy breakfast · return hire kit · bags to chalet storage',note:''},
+        {t:'midday',ic:'🚆',cat:'travel',who:'a',st:'draft',tx:'Railjet → Zurich HB → ZRH · <b>at airport 1.5h before the flight</b>',note:'Backpacks only = straight to security.'},
+        {t:'rule',ic:'⛔',cat:'flex',who:'a',st:'conf',tx:'Nobody skis on departure day. It never ends well.',note:''}]}
+    ],
+    places:[
+      {n:'Mooserwirt',cats:['apres'],chips:['big après','15:30 anthem'],line:'The loudest ski bar in the Alps. Final Countdown daily at 15:30.',best:'15:30–18:00, daily',q:'Mooserwirt+St+Anton'},
+      {n:'Krazy Kanguruh',cats:['apres'],chips:['big après','rebuilt 2025'],line:'Mario Matt’s legendary KK — glass roof, crawl starts here.',best:'15:00 onwards',q:'Krazy+Kanguruh+St+Anton'},
+      {n:'Taps',cats:['apres'],chips:['crawl stop'],line:'Middle leg of the KK → Taps → Mooserwirt crawl.',best:'Friday send',q:'Taps+St+Anton'},
+      {n:'Sennhütte',cats:['apres','lunch'],chips:['gentle après','family-run'],line:'Calmer first-night après. Good lunch too.',best:'Day 1 · easy days',q:'Sennh%C3%BCtte+St+Anton'},
+      {n:'Rendl Beach',cats:['lunch'],chips:['slope lunch','deckchairs'],line:'Deckchairs + music at 2,000 m. Thursday’s lunch.',best:'Rendl day, 12:30',q:'Rendl+Beach+St+Anton'},
+      {n:'Hospiz Alm',cats:['lunch'],chips:['slope lunch','worth the detour'],line:'St Christoph institution at the bottom of blue 64. Famous slide to the loos.',best:'Monday long lunch',q:'Hospiz+Alm+St+Christoph'},
+      {n:'Verwallstube',cats:['lunch'],chips:['fancy','views'],line:'Galzig fine dining at 2,085 m — if we earn it.',best:'Clear day',q:'Verwallstube+Galzig'},
+      {n:'Bodega',cats:['dinner'],chips:['walk-in','tapas'],line:'Town dinner default #1. No booking needed.',best:'19:30',q:'Bodega+St+Anton'},
+      {n:'Fuhrmannstube',cats:['dinner'],chips:['walk-in','tyrolean'],line:'Proper Gröstl + Kaiserschmarrn. Cosy, honest.',best:'19:30',q:'Fuhrmannstube+St+Anton'},
+      {n:'Pomodoro',cats:['dinner'],chips:['walk-in','pizza'],line:'Easy pizza night when legs are gone.',best:'Recovery night',q:'Pomodoro+St+Anton'},
+      {n:'Rodelalm',cats:['dinner'],chips:['toboggan night','cash'],line:'Dinner at the top of the night toboggan run. ~€50 cash pp.',best:'Tue/Thu — confirm locally',q:'Rodelalm+St+Anton'},
+      {n:'Arlberg WellCom',cats:['wellness'],chips:['spa','rain backup'],line:'Pool, saunas, sport hall. The Plan C anchor.',best:'Flex day · bad weather',q:'Arlberg+WellCom+St+Anton'},
+      {n:'Spar supermarket',cats:['essentials'],chips:['supplies'],line:'Snacks, water, après-recovery rations. Near the centre.',best:'Day 1 stock-up',q:'Spar+St+Anton+am+Arlberg'},
+      {n:'St Anton station',cats:['transport'],chips:['arrive + depart'],line:'Railjet stops in the village — 5 min walk to centre.',best:'Day 1 + 8',q:'St.+Anton+am+Arlberg+Bahnhof'},
+      {n:'Nassereinbahn',cats:['transport'],chips:['our gondola','download ok'],line:'Our lift. Download instead of skiing the home run.',best:'Every day',q:'Nassereinbahn+St+Anton'},
+      {n:'Galzigbahn',cats:['transport'],chips:['main lift'],line:'Town-centre flagship lift — start of the Lech run.',best:'Lech days',q:'Galzigbahn+St+Anton'},
+      {n:'Valluga viewing platform',cats:['wellness'],chips:['photo','non-skiers ok'],line:'Ride up for the 2,811 m view — no skiing required.',best:'Clear day',q:'Valluga+St+Anton'},
+      {n:'Pharmacy (Apotheke)',cats:['essentials'],chips:['ibuprofen hq'],line:'For when the home run wins anyway.',best:'Hopefully never',q:'Apotheke+St+Anton+am+Arlberg'}
+    ],
+    bookings:[
+      {id:'chalet',ic:'🏠',n:'Chalet — Nasserein',owner:'Jason',due:'ASAP — Jan books out first',est:'£1,000–1,400 pp',note:'Sleeps 8+, catered, ≤5 min to Nassereinbahn. Confirm boot room, luggage storage, pass delivery. Sources: allChalets, SNO, Skiworld, Alpine Answers.',v1:'status-2'},
+      {id:'flights',ic:'✈️',n:'Flights LON ⇄ ZRH',owner:'one person books all 8',due:'after chalet',est:'~£130 pp',note:'Sat early out (~07:00–08:30), Sat afternoon back. BA / Swiss / easyJet. All 8 same flight.',v1:'status-3'},
+      {id:'train',ic:'🚆',n:'Railjet ZRH ⇄ St Anton',owner:'same person as flights',due:'when ÖBB opens (~6 months out)',est:'~£55 pp return',est2:'',note:'Direct, ~2h30, from €21 each way booked ahead. Reserve 8 together.',v1:'status-4'},
+      {id:'pass',ic:'🎟️',n:'Lift passes — 6 day Arlberg',owner:'each traveller',due:'online, pre-trip',est:'€450 + €5 chipcard',note:'Official 2025/26 tariff. Ask chalet about delivery to avoid the Saturday queue.',v1:null},
+      {id:'hire',ic:'🎿',n:'Ski + boot hire',owner:'each traveller',due:'online, pre-trip',est:'~£175 pp',note:'Nasserein shop, ~15% off online. Collect at Saturday-evening fitting.',v1:'status-6'},
+      {id:'lessons',ic:'🎓',n:'Lessons — 3 half-days',owner:'learners',due:'once dates locked',est:'~£225 pp',note:'Skischule Arlberg group lessons, meet Nasserein nursery 09:15, days 1–3.',v1:'status-5'},
+      {id:'guide',ic:'🧭',n:'Jason’s guide day',owner:'Jason',due:'can book in resort',est:'€400–500 ÷ joiners',note:'Valluga / off-piste. Joiners need off-piste insurance cover.',v1:'status-7'},
+      {id:'tobog',ic:'🛷',n:'Toboggan night + Rodelalm',owner:'Jason',due:'in resort, day 1',est:'~€50 cash pp',note:'Assumed Tue/Thu — confirm locally, swap nights if needed.',v1:null}
+    ],
+    decisions:[
+      {id:1,t:'Confirm the week',due:'now — one message',owner:'everyone',opts:['16–23 Jan 2027','another week'],rec:0,note:'Mid-Jan = best value + coldest snow.'},
+      {id:2,t:'Final headcount',due:'with the week',owner:'everyone',opts:['8 as planned','+1s / drop-outs'],rec:0,note:'Chalet size + flight block depend on it.'},
+      {id:3,t:'Chalet budget ceiling (pp)',due:'before shortlist',owner:'everyone',opts:['£1,100','£1,250','£1,400'],rec:1,note:'Recommended £1,250 — buys catered + ≤5 min to the gondola.'},
+      {id:4,t:'Who’s in for lessons?',due:'before booking, days 1–3',owner:'learners',opts:['all 7','some'],rec:0,note:'Group rate works best all-in. ~£225 for 3 half-days.'},
+      {id:5,t:'Wednesday plan',due:'decide on the trip, Tue night',owner:'everyone',opts:['Lech again','spa day','split'],rec:2,note:'Split recommended — skiers ski, resters rest, everyone happy.'},
+      {id:6,t:'Guided off-piste joiners',due:'before trip — insurance',owner:'confident skiers',opts:['Jason solo','Jason +1–2'],rec:0,note:'Joiners must add off-piste-with-guide insurance cover.'}
+    ]
+  };
+
+  /* ---------- nav ---------- */
+  var views=document.querySelectorAll('.view');
+  function show(v,sub){
+    document.querySelectorAll('.tab[data-v]').forEach(function(t){t.classList.toggle('on',t.dataset.v===v);});
+    document.querySelectorAll('.dock button[data-go]').forEach(function(t){t.classList.toggle('on',t.dataset.go===v);});
+    views.forEach(function(x){x.classList.toggle('on',x.id==='v-'+v);});
+    if(v==='kit'&&sub)kitShow(sub);
+    window.scrollTo({top:0});
+  }
+  document.querySelectorAll('.tab[data-v]').forEach(function(t){t.addEventListener('click',function(){show(t.dataset.v);});});
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-go]');
+    if(b){show(b.dataset.go,b.dataset.sub);}
+    if(e.target.closest('[data-help]')){drawer(true);}
+    if(e.target.closest('[data-help-close]')){drawer(false);}
+  });
+  function drawer(on){document.getElementById('helpDrawer').classList.toggle('on',on);}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')drawer(false);});
+
+  /* ---------- phase + countdown ---------- */
+  var now=new Date(); now.setHours(0,0,0,0);
+  var msday=86400000;
+  var daysTo=Math.ceil((TRIP.start-now)/msday);
+  var firstWeek=new Date(2027,0,9);
+  var daysToFirst=Math.ceil((firstWeek-now)/msday);
+  var phase = now<TRIP.start ? (daysTo===0?'outbound':'pre') : (now>TRIP.end ? 'post' : (now.getTime()===TRIP.end.getTime() ? 'depart' : (now.getTime()===TRIP.start.getTime()?'outbound':'resort')));
+  var cc=document.getElementById('countChip');
+  if(now<firstWeek)cc.innerHTML='<b>'+daysToFirst+'</b> days to first option';
+  else if(now<TRIP.start)cc.innerHTML='<b>UCPA week</b> · Val Thorens';
+  else if(phase==='outbound')cc.innerHTML='<b>Travel day</b> — wheels up';
+  else if(phase==='resort'){var dnum=Math.floor((now-TRIP.start)/msday)+1;cc.innerHTML='<b>Ski day '+dnum+'</b> of 7';}
+  else if(phase==='depart')cc.innerHTML='<b>Departure day</b>';
+  else cc.innerHTML='<b>Trip complete</b> 🍻';
+  if(phase!=='pre'){var ds=document.getElementById('dreamSell');if(ds)ds.style.display='none';}
+
+  /* ---------- days render ---------- */
+  var CDN='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+  var DAYIMG=[
+    {u:CDN+'b/bf/Blick_auf_St._Anton_-_Gondel_der_Galzig-Bahn.jpg/1920px-Blick_auf_St._Anton_-_Gondel_der_Galzig-Bahn.jpg',m:'Wheels up · gondola country'},
+    {u:CDN+'f/f1/Nasserein%2C_2022.jpg/1920px-Nasserein%2C_2022.jpg',m:'Find your ski legs'},
+    {u:CDN+'1/1c/St_Anton_-_Galzig.jpg/1920px-St_Anton_-_Galzig.jpg',m:'The blue 64 classic'},
+    {u:CDN+'a/ab/First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg/1920px-First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg',m:'The Lech pilgrimage'},
+    {u:CDN+'f/f9/Skiroute_3_Galzig_-_panoramio.jpg/1920px-Skiroute_3_Galzig_-_panoramio.jpg',m:'Legs decide'},
+    {u:CDN+'e/e3/Sanktantonamarlberg.jpg/1920px-Sanktantonamarlberg.jpg',m:'Rendl beach day'},
+    {u:CDN+'1/15/Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg/1920px-Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg',m:'The send'},
+    {u:CDN+'d/dd/Galzigbahn%2C_2022.jpg/1920px-Galzigbahn%2C_2022.jpg',m:'Auf Wiedersehen'}
+  ];
+  var pick=document.getElementById('dayPick'),host=document.getElementById('dayHost');
+  TRIP.days.forEach(function(d,i){
+    var b=document.createElement('button');b.className='dbtn'+(i===0?' on':'');b.dataset.d=i;
+    b.innerHTML='<span class="dw">'+d.dw+'</span><span class="dn">'+d.dn+'</span>';
+    pick.appendChild(b);
+    var c=document.createElement('div');c.className='daycard card'+(i===0?' on':'');c.dataset.day=i;c.style.display=i===0?'block':'none';
+    var rows=d.blocks.map(function(x){
+      var who=x.who==='g'?'<span class="who g">group</span>':x.who==='j'?'<span class="who j">Jason</span>':'<span class="who a">all</span>';
+      var st=x.st==='conf'?'<span class="st conf">rule</span>':x.st==='book'?'<span class="st book">to book</span>':x.st==='flexs'?'<span class="st flexs">flex</span>':'';
+      return '<div class="tlrow '+x.cat+'"><span class="tt">'+x.t+'</span><span class="ic">'+x.ic+'</span><span class="tx">'+x.tx+who+st+(x.note?'<span class="note">'+x.note+'</span>':'')+'</span></div>';
+    }).join('');
+    var ban=DAYIMG[i]?'<div class="dayban"><img src="'+DAYIMG[i].u+'" alt="" loading="lazy" onerror="this.remove()"><span class="mood">'+DAYIMG[i].m+'</span><span class="wx2">Forecast: check live ↗</span></div>':'';
+    c.innerHTML=ban
+      +'<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px;"><h3 style="font-family:Fraunces,serif;font-size:20px;font-weight:600;">'+d.name+'</h3><span class="chip '+(d.tagc||'')+'">'+d.tag+'</span></div>'
+      +'<div class="meet">📍 '+d.meet+'</div><div class="tl">'+rows+'</div>';
+    host.appendChild(c);
+  });
+  pick.addEventListener('click',function(e){
+    var b=e.target.closest('.dbtn');if(!b)return;
+    pick.querySelectorAll('.dbtn').forEach(function(x){x.classList.toggle('on',x===b);});
+    host.querySelectorAll('.daycard').forEach(function(c){var on=c.dataset.day===b.dataset.d;c.classList.toggle('on',on);c.style.display=on?'block':'none';});
+  });
+  if(phase==='resort'||phase==='depart'||phase==='outbound'){
+    var idx=Math.max(0,Math.min(7,Math.floor((now-TRIP.start)/msday)));
+    var btn=pick.querySelector('[data-d="'+idx+'"]');if(btn)btn.click();
+  }
+  /* planning / trip mode */
+  var mdP=document.getElementById('mdPlan'),mdT=document.getElementById('mdTrip');
+  function setMode(trip){
+    document.body.classList.toggle('tripmode',trip);
+    mdP.classList.toggle('on',!trip);mdT.classList.toggle('on',trip);
+    set('mode',trip?'trip':'plan');
+  }
+  mdP.addEventListener('click',function(){setMode(false);});
+  mdT.addEventListener('click',function(){setMode(true);});
+  var savedMode=get('mode');
+  setMode(savedMode?savedMode==='trip':(phase!=='pre'&&phase!=='post'));
+
+  /* compact / detail */
+  var tgC=document.getElementById('tgCompact'),tgD=document.getElementById('tgDetail');
+  function setCompact(c){document.body.classList.toggle('compact',c);tgC.classList.toggle('on',c);tgD.classList.toggle('on',!c);set('compact',c?'1':'0');}
+  tgC.addEventListener('click',function(){setCompact(true);});
+  tgD.addEventListener('click',function(){setCompact(false);});
+  if(get('compact')==='1')setCompact(true);
+
+  /* week strip on home */
+  var ws=document.getElementById('weekStrip');
+  var wsx=['Fly + scenic train, chalet by 3pm','Lesson 1, gentle blues, first après','Long mountain lunch in St Christoph','The famous side · Mooserwirt 15:30','Ski, spa or both · night toboggan','Deckchair beach bar at 2,000 m','Full après crawl · big last dinner','Lazy breakfast, train, fly home'];
+  var wscls=['trav','','','hot','','','send','trav'];
+  TRIP.days.forEach(function(d,i){
+    var w=document.createElement('div');w.className='wk '+wscls[i];w.dataset.go='days';
+    w.innerHTML='<div class="wd">'+d.dw+' '+d.dn+'</div><div class="wt">'+d.name+'</div><div class="wx">'+wsx[i]+'</div>';
+    w.addEventListener('click',function(){show('days');var b=pick.querySelector('[data-d="'+i+'"]');if(b)b.click();});
+    ws.appendChild(w);
+  });
+
+  /* ---------- places ---------- */
+  var FILTERS=[['all','All'],['apres','Après'],['lunch','Slope lunch'],['dinner','Dinner'],['essentials','Essentials'],['wellness','Wellness + backup'],['transport','Transport']];
+  var pf=document.getElementById('placeFilters'),pc=document.getElementById('placeCards'),curF='all';
+  FILTERS.forEach(function(f,i){
+    var b=document.createElement('button');b.className='fbtn'+(i===0?' on':'');b.textContent=f[1];b.dataset.f=f[0];
+    b.addEventListener('click',function(){curF=f[0];pf.querySelectorAll('.fbtn').forEach(function(x){x.classList.toggle('on',x===b);});renderPlaces();});
+    pf.appendChild(b);
+  });
+  var THUMBS={
+    apres:CDN+'1/15/Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg/1280px-Mooserwirt_in_St._Anton_am_Arlberg_-_panoramio.jpg',
+    lunch:CDN+'a/ab/First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg/1280px-First_Class_Ski_Resort_Arlberg_%28201246045%29.jpeg',
+    dinner:CDN+'f/f1/Nasserein%2C_2022.jpg/1280px-Nasserein%2C_2022.jpg',
+    wellness:CDN+'e/e3/Sanktantonamarlberg.jpg/1280px-Sanktantonamarlberg.jpg',
+    essentials:CDN+'1/19/Nasserein.jpg/1280px-Nasserein.jpg',
+    transport:CDN+'d/dd/Galzigbahn%2C_2022.jpg/1280px-Galzigbahn%2C_2022.jpg'
+  };
+  function renderPlaces(){
+    pc.innerHTML='';
+    TRIP.places.filter(function(p){return curF==='all'||p.cats.indexOf(curF)>-1;}).forEach(function(p){
+      var d=document.createElement('div');d.className='pcard';
+      var th=THUMBS[p.cats[0]]?'<div class="thumb"><img src="'+THUMBS[p.cats[0]]+'" alt="" loading="lazy" onerror="this.remove()"></div>':'';
+      d.innerHTML=th+'<div class="pt">'+p.n+'</div><div class="chips">'+p.chips.map(function(c){return '<span class="chip '+(p.cats[0]==='apres'?'amber':p.cats[0]==='dinner'||p.cats[0]==='lunch'?'green':'blue')+'">'+c+'</span>';}).join('')+'</div>'
+        +'<div class="pl">'+p.line+'</div><div class="pb">Best: '+p.best+'</div>'
+        +'<div class="pa"><a href="https://www.google.com/maps/search/?api=1&query='+p.q+'" target="_blank" rel="noopener">Map ↗</a></div>';
+      pc.appendChild(d);
+    });
+  }
+  renderPlaces();
+  var plL=document.getElementById('plList'),plM=document.getElementById('plMap');
+  function placesMode(map){
+    document.getElementById('placesList').style.display=map?'none':'block';
+    document.getElementById('placesMap').style.display=map?'block':'none';
+    plL.classList.toggle('on',!map);plM.classList.toggle('on',map);
+  }
+  plL.addEventListener('click',function(){placesMode(false);});
+  plM.addEventListener('click',function(){placesMode(true);});
+
+  /* ---------- kit subnav ---------- */
+  var KITS=[['bookings','🎟️ Bookings'],['budget','💶 Budget'],['packing','🎒 Packing'],['documents','🗂️ Documents'],['decisions','🗣️ Decisions'],['notes','📝 Notes']];
+  var kn=document.getElementById('kitNav');
+  KITS.forEach(function(k,i){
+    var b=document.createElement('button');b.className='fbtn'+(i===0?' on':'');b.textContent=k[1];b.dataset.k=k[0];
+    b.addEventListener('click',function(){kitShow(k[0]);});
+    kn.appendChild(b);
+  });
+  function kitShow(id){
+    kn.querySelectorAll('.fbtn').forEach(function(x){x.classList.toggle('on',x.dataset.k===id);});
+    document.querySelectorAll('.kview').forEach(function(v){v.classList.toggle('on',v.id==='k-'+id);});
+  }
+  kitShow('bookings');
+
+  /* ---------- bookings board ---------- */
+  var STATUSES=[['s1','Not booked'],['s2','Researching'],['s3','Held'],['s4','Booked'],['s5','Paid']];
+  var bc=document.getElementById('bookCards');
+  TRIP.bookings.forEach(function(b){
+    var saved=get('book-'+b.id);
+    if(saved===null&&b.v1&&get(b.v1)==='1')saved='s4'; /* migrate v1 ticks */
+    var card=document.createElement('div');card.className='bcard';
+    card.innerHTML='<div class="bhead2"><h3>'+b.ic+' '+b.n+'</h3><select class="bsel" data-book="'+b.id+'" aria-label="Status for '+b.n+'">'
+      +STATUSES.map(function(s){return '<option value="'+s[0]+'"'+((saved||'s1')===s[0]?' selected':'')+'>'+s[1]+'</option>';}).join('')+'</select></div>'
+      +'<div class="bbody"><div class="kv"><span>Owner</span><span>'+b.owner+'</span></div>'
+      +'<div class="kv"><span>When</span><span>'+b.due+'</span></div>'
+      +'<div class="kv"><span>Est. cost</span><span>'+b.est+'</span></div>'
+      +'<p style="font-size:11.8px;color:var(--faint);margin-top:6px;">'+b.note+'</p>'
+      +'<input class="bref" data-ref="ref-'+b.id+'" placeholder="booking ref / provider ____"></div>';
+    bc.appendChild(card);
+  });
+  function paintSel(s){s.className='bsel '+s.value;if(s.value==='s1')s.className='bsel';}
+  function bookCounts(){
+    var done=0;document.querySelectorAll('.bsel').forEach(function(s){if(s.value==='s4'||s.value==='s5')done++;});
+    return done;
+  }
+  document.querySelectorAll('.bsel').forEach(function(s){
+    paintSel(s);
+    s.addEventListener('change',function(){set('book-'+s.dataset.book,s.value);paintSel(s);refresh();});
+  });
+
+  /* refs (bookings + documents) */
+  document.querySelectorAll('input.bref[data-ref]').forEach(function(inp){
+    var v=get('ref-'+inp.dataset.ref);if(v)inp.value=v;
+    inp.addEventListener('input',function(){set('ref-'+inp.dataset.ref,inp.value);if(inp.dataset.ref==='chalet-addr')helpChalet();});
+  });
+  function helpChalet(){
+    var v=get('ref-chalet-addr');
+    document.getElementById('helpChalet').textContent=v?v:'Address not set yet — add it in Trip kit → Documents once booked.';
+  }
+  helpChalet();
+  document.querySelectorAll('.copy[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=get('ref-'+b.dataset.copy)||'';
+      if(navigator.clipboard&&v){navigator.clipboard.writeText(v);b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy';},1500);}
+    });
+  });
+
+  /* ---------- decisions ---------- */
+  var dc=document.getElementById('decCards');
+  TRIP.decisions.forEach(function(d){
+    var done=get('note-'+d.id)==='1';
+    var savedChoice=parseInt(get('choice-'+d.id),10);
+    if(isNaN(savedChoice))savedChoice=-1;
+    var card=document.createElement('div');card.className='card dcard'+(done?' done':'');
+    card.innerHTML='<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;"><h3>'+d.t+'</h3>'
+      +'<input type="checkbox" data-store="note-'+d.id+'" aria-label="Decided: '+d.t+'" style="width:18px;height:18px;accent-color:var(--pine);cursor:pointer;flex:none;margin-top:2px;"'+(done?' checked':'')+'></div>'
+      +'<div class="dmeta"><span class="chip amber">⏰ '+d.due+'</span><span class="chip">'+d.owner+'</span></div>'
+      +'<div class="chips" style="margin:4px 0 6px;">'+d.opts.map(function(o,i){return '<button type="button" class="opt'+(i===d.rec?' rec':'')+(i===savedChoice?' chosen':'')+'" data-choice="'+i+'">'+o+(i===d.rec?' ✓ rec':'')+'</button>';}).join('')+'</div>'
+      +'<p style="font-size:11.8px;color:var(--faint);">'+d.note+'</p>'
+      +'<div class="decision-foot"><span>Saved choice</span><b data-choice-label>'+(savedChoice>-1?d.opts[savedChoice]:'None yet')+'</b></div>';
+    dc.appendChild(card);
+    card.querySelector('input').addEventListener('change',function(e){
+      set('note-'+d.id,e.target.checked?'1':'0');card.classList.toggle('done',e.target.checked);refresh();
+    });
+    card.querySelectorAll('button.opt').forEach(function(opt){
+      opt.addEventListener('click',function(){
+        var idx=parseInt(opt.dataset.choice,10);
+        set('choice-'+d.id,String(idx));
+        card.querySelectorAll('button.opt').forEach(function(x){x.classList.toggle('chosen',x===opt);});
+        card.querySelector('[data-choice-label]').textContent=d.opts[idx];
+        if(navigator.vibrate)navigator.vibrate(18);
+        renderPlanningBoard();
+      });
+    });
+  });
+
+  /* open decisions on home */
+  function renderOpenDecisions(){
+    var host=document.getElementById('openDecisions');
+    var open=TRIP.decisions.filter(function(d){return get('note-'+d.id)!=='1';});
+    if(!open.length){host.innerHTML='<div class="mini">Decisions</div><div class="card" style="border-left:4px solid var(--pine);"><p><b style="color:var(--pine);">All settled.</b> Nothing waiting on the group.</p></div>';return;}
+    host.innerHTML='<div class="mini">Waiting on the group · '+open.length+' open</div><div class="grid g3">'+open.slice(0,3).map(function(d){
+      return '<div class="card dcard" style="cursor:pointer;" data-go="kit" data-sub="decisions"><h3>'+d.t+'</h3><div class="dmeta"><span class="chip amber">⏰ '+d.due+'</span></div><p style="font-size:11.8px;color:var(--faint);">'+d.note+'</p></div>';
+    }).join('')+'</div>';
+  }
+
+  /* ---------- packing + generic checkboxes ---------- */
+  document.querySelectorAll('input[type=checkbox][data-store]').forEach(function(b){
+    if(get(b.dataset.store)==='1')b.checked=true;
+    b.addEventListener('change',function(){set(b.dataset.store,b.checked?'1':'0');refresh();});
+  });
+
+  /* ---------- budget ---------- */
+  var hc=document.getElementById('headcount');
+  if(hc&&get('headcount'))hc.value=get('headcount');
+  var amounts=document.querySelectorAll('input[type=number][data-b]');
+  amounts.forEach(function(a){
+    var s=get('amt-'+a.dataset.b);
+    if(s!==null&&s!=='')a.value=s;
+    a.addEventListener('input',function(){set('amt-'+a.dataset.b,a.value);refresh();});
+  });
+  if(hc)hc.addEventListener('input',function(){set('headcount',hc.value);refresh();});
+  function calc(){
+    var n=hc?(parseInt(hc.value,10)||0):0,pp=0,paid=0;
+    amounts.forEach(function(a){
+      var v=parseFloat(a.value)||0;pp+=v;
+      var row=a.closest('.budgetrow'),g=row.querySelector('.gtotal');
+      if(g)g.textContent='£'+Math.round(v*n).toLocaleString();
+      var pcb=row.querySelector('input[type=checkbox]');
+      if(pcb&&pcb.checked)paid+=v;
+    });
+    function f(x){return '£'+Math.round(x).toLocaleString();}
+    var a=document.getElementById('tpp'),b=document.getElementById('tgrp'),c=document.getElementById('tpaid'),d=document.getElementById('tleft');
+    if(a)a.textContent=f(pp);if(b)b.textContent=f(pp*n);if(c)c.textContent=f(paid);if(d)d.textContent=f(Math.max(0,pp-paid));
+    return {pp:pp,paid:paid};
+  }
+
+  /* ---------- notes ---------- */
+  [['notesShared','notes-shared'],['notesPrivate','notes-private']].forEach(function(x){
+    var el=document.getElementById(x[0]);if(!el)return;
+    var v=get(x[1]);if(v)el.value=v;
+    el.addEventListener('input',function(){set(x[1],el.value);});
+  });
+
+  /* ---------- planning-stage route + share brief ---------- */
+  function isBooked(id){var v=get('book-'+id);return v==='s4'||v==='s5';}
+  function renderPlanningBoard(){
+    var settled=TRIP.decisions.filter(function(d){return get('note-'+d.id)==='1';}).length;
+    var score=document.getElementById('pbScore'),num=document.getElementById('pbScoreNum');
+    if(score)score.style.setProperty('--pb-progress',Math.round(settled/TRIP.decisions.length*100)+'%');
+    if(num)num.textContent=settled+'/'+TRIP.decisions.length;
+    var week=get('note-1')==='1',crew=get('note-2')==='1',chalet=isBooked('chalet');
+    var travel=isBooked('flights')&&isBooked('train');
+    var mountain=isBooked('pass')&&isBooked('hire')&&isBooked('lessons');
+    var stages=[
+      {icon:'🏔️',label:'St Anton chosen',done:true},
+      {icon:'📅',label:'Week confirmed',done:week},
+      {icon:'👥',label:'Crew locked',done:crew},
+      {icon:'🏠',label:'Chalet secured',done:chalet},
+      {icon:'✈️',label:'Travel booked',done:travel},
+      {icon:'🎿',label:'Mountain ready',done:mountain}
+    ];
+    var firstOpen=stages.findIndex(function(x){return !x.done;});
+    var route=document.getElementById('planningRoute');
+    if(route)route.innerHTML=stages.map(function(x,i){
+      var cls=x.done?' done':i===firstOpen?' now':'';
+      var state=x.done?'locked':i===firstOpen?'next':'waiting';
+      return '<div class="pgate'+cls+'"><div class="pnode">'+(x.done?'✓':x.icon)+'</div><div class="plabel">'+x.label+'</div><div class="pstate">'+state+'</div></div>';
+    }).join('');
+    var unlock=[week,crew,chalet].filter(Boolean).length;
+    var us=document.getElementById('unlockState');
+    if(us){us.textContent=unlock===3?'Ready for full board':(3-unlock)+' gate'+(3-unlock===1?'':'s')+' to unlock';us.className='chip '+(unlock===3?'green':'amber');}
+  }
+  function planningBriefText(){
+    var lines=["ST ANTON '27 — GROUP DECISIONS","Target: Sat 16–Sat 23 Jan 2027 · 8 travellers · Nasserein","Status: planning · nothing assumed booked",''];
+    TRIP.decisions.forEach(function(d){
+      var idx=parseInt(get('choice-'+d.id),10),choice=!isNaN(idx)&&d.opts[idx]?d.opts[idx]:'No preference saved';
+      lines.push((get('note-'+d.id)==='1'?'✓ ':'○ ')+d.t+': '+choice);
+    });
+    lines.push('','Next move: '+document.getElementById('nuTitle').textContent); 
+    lines.push('Golden rule: early intermediates download the gondola; no Steissbachtal home run.');
+    return lines.join('\n');
+  }
+  var copyPlanning=document.getElementById('copyPlanningBrief');
+  if(copyPlanning)copyPlanning.addEventListener('click',function(){
+    var text=planningBriefText();
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){copyPlanning.textContent='Copied ✓';setTimeout(function(){copyPlanning.textContent='Copy group brief';},1600);});
+    }else{
+      var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();copyPlanning.textContent='Copied ✓';setTimeout(function(){copyPlanning.textContent='Copy group brief';},1600);
+    }
+  });
+
+  /* ---------- readiness + next up ---------- */
+  function refresh(){
+    var bd=bookCounts();
+    var bs=document.getElementById('bookSummary');if(bs)bs.textContent=bd+' of '+TRIP.bookings.length+' locked in.';
+    var rc=document.getElementById('readyChip');if(rc)rc.innerHTML='<b>'+bd+'/'+TRIP.bookings.length+'</b> locked in';
+    bar('rdBook',bd,TRIP.bookings.length,bd+'/'+TRIP.bookings.length);
+    var dd=TRIP.decisions.filter(function(d){return get('note-'+d.id)==='1';}).length;
+    bar('rdDec',dd,TRIP.decisions.length,dd+'/'+TRIP.decisions.length);
+    var pk=0;for(var i=1;i<=14;i++){if(get('pack-'+i)==='1')pk++;}
+    bar('rdPack',pk,14,pk+'/14');
+    var money=calc();
+    bar('rdPaid',money.paid,money.pp||1,'£'+Math.round(money.paid).toLocaleString());
+    [['pack-a',1,7],['pack-b',8,14]].forEach(function(c){
+      var el=document.querySelector('[data-bar="'+c[0]+'"]');if(!el)return;
+      var nn=0,t=0;for(var i=c[1];i<=c[2];i++){var x=document.getElementById('p'+i);if(x){t++;if(x.checked)nn++;}}
+      el.style.width=(t?nn/t*100:0)+'%';
+    });
+    renderOpenDecisions();
+    renderPlanningBoard();
+    nextUp(bd);
+  }
+  function bar(id,n,total,label){
+    var el=document.getElementById(id);if(el)el.textContent=label;
+    var b=document.getElementById(id+'Bar');if(b)b.style.width=(total?Math.min(100,n/total*100):0)+'%';
+  }
+  function nextUp(booked){
+    var t=document.getElementById('nuTitle'),s=document.getElementById('nuSub'),btn=document.getElementById('nuBtn'),l=document.getElementById('nuLabel');
+    if(phase==='outbound'){l.textContent='Today';t.textContent='Travel day — London → St Anton';s.textContent='Airport 1.5h before the flight · Railjet from Zurich HB · chalet ~15:00';btn.textContent='Open today →';btn.dataset.go='days';btn.removeAttribute('data-sub');return;}
+    if(phase==='resort'){var dnum=Math.floor((now-TRIP.start)/msday);var d=TRIP.days[Math.min(7,dnum)];l.textContent='Today';t.textContent=d.name+' — '+d.tag;s.textContent=d.meet;btn.textContent='Open today →';btn.dataset.go='days';btn.removeAttribute('data-sub');return;}
+    if(phase==='depart'){l.textContent='Today';t.textContent='Departure — no hungover skiing';s.textContent='Return hire kit · bags to storage · leave ~4.5h before the flight';btn.textContent='Open today →';btn.dataset.go='days';btn.removeAttribute('data-sub');return;}
+    if(phase==='post'){l.textContent='Done';t.textContent='Trip complete — run the debrief';s.textContent='Log learnings, shortlist keepers, book the next one';btn.textContent='Notes →';btn.dataset.go='kit';btn.dataset.sub='notes';return;}
+    /* pre-trip: first open decision, then first unbooked gate */
+    var openDec=TRIP.decisions.filter(function(d){return get('note-'+d.id)!=='1';});
+    if(openDec.length){l.textContent='Next up · decision';t.textContent=openDec[0].t;s.textContent='⏰ '+openDec[0].due+' · '+openDec[0].owner;btn.textContent='Open decisions →';btn.dataset.go='kit';btn.dataset.sub='decisions';return;}
+    var nb=null;TRIP.bookings.some(function(b){var v=get('book-'+b.id);if(v!=='s4'&&v!=='s5'){nb=b;return true;}return false;});
+    if(nb){l.textContent='Next up · booking';t.textContent=nb.n;s.textContent='⏰ '+nb.due+' · '+nb.owner;btn.textContent='Open bookings →';btn.dataset.go='kit';btn.dataset.sub='bookings';return;}
+    l.textContent='Ready';t.textContent='Everything is locked in. Wax the skis.';s.textContent=daysTo+' days to go';btn.textContent='Kit list →';btn.dataset.go='kit';btn.dataset.sub='packing';
+  }
+
+  /* ---------- reset ---------- */
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    if(!confirm('Clear all ticks, statuses, notes and edits saved on this device?'))return;
+    if(LS){Object.keys(LS).filter(function(k){return k.indexOf('stanton27-')===0;}).forEach(function(k){LS.removeItem(k);});}
+    location.reload();
+  });
+
+  refresh();
+})();
+</script>
+</body>
+</html>
